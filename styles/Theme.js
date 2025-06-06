@@ -22,8 +22,10 @@ const Theme = css`
     --t-font-family-system: system-ui, -apple-system, BlinkMacSystemFont,
       “Segoe UI”, Roboto, Oxygen-Sans, Ubuntu, Cantarell, “Helvetica Neue”,
       Arial, sans-serif;
-    --t-font-family-heading: "__customFont_a8cd55", var(--t-font-family-system);
-    --t-font-family-body: "__customFont_a8cd55", var(--t-font-family-system);
+    --t-font-family-heading: var(--t-font-family--outfit),
+      var(--t-font-family-system);
+    --t-font-family-body: var(--t-font-family--outfit),
+      var(--t-font-family-system);
     --t-font-weight-heading: 700;
     --t-font-weight-button: 700;
     --t-font-family-button: var(--t-font-family-heading);
@@ -107,6 +109,8 @@ const Theme = css`
     --t-global-image-border-radius: 16px;
     --t-pagination-button-color: #fcf9ff;
     --t-pagination-button-hover-color: #f5f1f9;
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
     // Blobs
     --t-blob-color-1: var(--t-primary-branding-color);
     --t-blob-color-2: #28ffea;

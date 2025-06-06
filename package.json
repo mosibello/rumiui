@@ -16,12 +16,14 @@
     "@sanity/structure": "^2.30.4",
     "@sanity/uuid": "^3.0.2",
     "@sanity/vision": "^3.52.4",
+    "@tailwindcss/postcss": "^4.1.8",
     "axios": "^1.7.5",
     "bootstrap": "^5.3.3",
     "html-react-parser": "^5.1.10",
     "next": "14.2.5",
     "next-sanity": "^9.4.3",
     "nextjs-toploader": "^1.6.12",
+    "postcss": "^8.5.4",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
@@ -31,7 +33,8 @@
     "sanity-plugin-media": "^2.3.2",
     "sass": "^1.77.6",
     "slugify": "^1.6.6",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
     "eslint": "^8",

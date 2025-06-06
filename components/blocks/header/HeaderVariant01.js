@@ -184,7 +184,7 @@ const HeaderVariant01 = ({ navigationSchema }) => {
               href="/"
             >
               <div className="b__header__header01__logo-wrapper u__cursor-pointer">
-                <span className="b__header__header01__logo u__font-family-heading u__f-900 u__heading-color--primary u__h3 u__letter-spacing--tight">
+                <span className="b__header__header01__logo u__font-family-heading u__f-700 u__heading-color--primary u__h3 u__letter-spacing--tight">
                   {organization || ``}
                 </span>
               </div>

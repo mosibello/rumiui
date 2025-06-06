@@ -1,4 +1,5 @@
-import "bootstrap/dist/css/bootstrap.css";
+import "./globals.css";
+// import "bootstrap/dist/css/bootstrap.css";
 import "@/styles/index.scss";
 import Layout from "@/components/wrappers/Layout";
 import StyledComponentsRegistry from "@/lib/registry";
@@ -8,11 +9,19 @@ import NextTopLoader from "nextjs-toploader";
 import localFont from "next/font/local";
 import { getSiteSettings } from "@/sanity/utils/queries";
 import urlFor from "@/lib/imageUrlBuilder";
+import { Outfit } from "next/font/google";
 
-export const customFont = localFont({
-  src: "../../public/fonts/Pacaembu.woff2",
-  variable: "--t-font-family-global",
+const globalFont = Outfit({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--t-font-family--outfit",
 });
+
+// export const customFont = localFont({
+//   src: "../../public/fonts/Pacaembu.woff2",
+//   variable: "--t-font-family-global",
+// });
 
 export default async function RootLayout({ children }) {
   const siteSettings = await getSiteSettings();
@@ -21,11 +30,10 @@ export default async function RootLayout({ children }) {
     : null;
   console.log(favicon);
   return (
-    <html lang="en">
+    <html lang="en" className={globalFont.variable}>
       <body
         data-url={process.env.NEXT_PUBLIC_VERCEL_URL}
         data-prod-url={process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}
-        className={customFont.variable}
       >
         <link rel="icon" href={favicon || ``} sizes="any" />
         <NextTopLoader

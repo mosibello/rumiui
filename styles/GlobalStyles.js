@@ -4,16 +4,6 @@ import Theme from "./Theme";
 import Utils from "./Utils";
 
 const Styles = css`
-  //## Custom Fonts
-  /* @font-face {
-    font-family: "Pacaembu";
-    src: url("/fonts/Pacaembu.woff2");
-    font-style: bold;
-    font-weight: 100 700;
-    font-display: swap;
-  } */
-  // ## End base
-
   // ## Base
   html {
     font-size: 16px;
@@ -39,6 +29,10 @@ const Styles = css`
 
   .container {
     max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
     // @media (min-width: 1470px) {
     //   max-width: 1450px;
     // }
