@@ -28,7 +28,7 @@ export function fetchSanity(query, params, nextOptions = {}) {
       }
     : {
         perspective: "published",
-        useCdn: true,
+        useCdn: false,
         next: {
           revalidate: 15000,
           ...nextOptions,
