@@ -10,14 +10,24 @@ export async function POST(req) {
     );
 
     if (!isValidSignature) {
+      console.warn("❌ Invalid Signature");
       return new Response("Invalid Signature", { status: 401 });
     }
 
     if (!body || !body._type) {
+      console.warn("❌ Bad Body");
       return new Response("Bad Request", { status: 400 });
     }
 
+    console.log(
+      "✅ Revalidating tag:",
+      body._type,
+      "at",
+      new Date().toISOString()
+    );
+
     revalidateTag(body._type);
+
     return NextResponse.json({
       status: 200,
       revalidated: true,
@@ -25,7 +35,7 @@ export async function POST(req) {
       body,
     });
   } catch (error) {
-    console.error(error);
+    console.error("❌ Revalidation error:", error);
     return new Response(error.message, { status: 500 });
   }
 }
