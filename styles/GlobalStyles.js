@@ -100,6 +100,11 @@ const Styles = css`
     line-height: var(--t-line-height-h6);
   }
 
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
   a {
     color: var(--t-anchor-color);
     text-decoration: underline;
