@@ -102,13 +102,18 @@ export async function getCategoryBySlug(categorySlug) {
 }
 
 export async function getPostsCount() {
-  return fetchSanity(groq`count(*[_type == "post" && ${QUERY_omitDrafts}])`);
+  return fetchSanity(
+    groq`count(*[_type == "post" && ${QUERY_omitDrafts}])`,
+    {},
+    { tags: ["post"] }
+  );
 }
 
 export async function getPostsByCategoryCount(categorySlug) {
   return fetchSanity(
     groq`count(*[_type == "post" && ${QUERY_omitDrafts} && $categorySlug in categories[]->slug.current])`,
-    { categorySlug }
+    { categorySlug },
+    { tags: ["post"] }
   );
 }
 
@@ -153,6 +158,7 @@ export async function getSiteSettings() {
         }
       }
     }`,
+    {},
     { tags: ["site_settings"] }
   );
 }
