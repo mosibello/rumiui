@@ -19,18 +19,30 @@ export async function POST(req) {
       return new Response("Bad Request", { status: 400 });
     }
 
-    console.log(
-      "✅ Revalidating tag:",
-      body._type,
-      "at",
-      new Date().toISOString()
-    );
+    const revalidationId = Math.random().toString(36).substring(7);
 
+    console.log(`🔄 [${revalidationId}] Webhook received:`, {
+      _type: body._type,
+      _id: body._id,
+      slug: body.slug?.current,
+      timestamp: new Date().toISOString(),
+    });
+
+    console.log(`🔄 [${revalidationId}] About to revalidate tag:`, body._type);
+
+    // Revalidate the tag
     revalidateTag(body._type);
+
+    console.log(
+      `✅ [${revalidationId}] Revalidation completed for tag:`,
+      body._type
+    );
 
     return NextResponse.json({
       status: 200,
       revalidated: true,
+      revalidationId,
+      tag: body._type,
       now: Date.now(),
       body,
     });
