@@ -3,11 +3,11 @@ import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
 import Image from "next/image";
 import urlFor from "@/lib/imageUrlBuilder";
-import Heading from "@/components/modules/Heading";
+import Heading from "@/components/ui/Heading";
 import Link from "next/link";
 import { formatDate } from "@/lib/helpers";
 import { stegaClean } from "@sanity/client/stega";
-import ArticleContent from "@/components/modules/ArticleContent";
+import ArticleContent from "@/components/ui/ArticleContent";
 
 const Wrapper = styled.article`
   .b__post__variant01 {

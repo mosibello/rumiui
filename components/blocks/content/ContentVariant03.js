@@ -2,7 +2,7 @@
 import parse from "html-react-parser";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import TextCardWithBar from "@/components/modules/TextCardWithBar";
+import TextCardWithBar from "@/components/ui/TextCardWithBar";
 
 const Wrapper = styled.div`
   .b__content__variant03 {

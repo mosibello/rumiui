@@ -2,7 +2,7 @@
 import parse from "html-react-parser";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import Accordion from "@/components/modules/Accordion";
+import Accordion from "@/components/ui/Accordion";
 
 const Wrapper = styled.div`
   .b__faq__variant01 {

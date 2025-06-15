@@ -1,8 +1,8 @@
 "use client";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import Heading from "@/components/modules/Heading";
-import RichtextField from "@/components/modules/RichtextField";
+import Heading from "@/components/ui/Heading";
+import RichtextField from "@/components/ui/RichtextField";
 import { stegaClean } from "@sanity/client/stega";
 
 const Wrapper = styled.div`

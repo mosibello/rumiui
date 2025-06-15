@@ -1,8 +1,8 @@
 import parse from "html-react-parser";
 import Bounded from "@/components/wrappers/Bounded";
 import { PortableText } from "@portabletext/react";
-import Button from "@/components/modules/Button";
-import PortableTextComponents from "@/components/modules/PortableTextComponents";
+import Button from "@/components/ui/Button";
+import PortableTextComponents from "@/components/ui/PortableTextComponents";
 
 const ContentVariant02 = ({ data }) => {
   return (

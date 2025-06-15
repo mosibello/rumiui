@@ -1,9 +1,9 @@
 "use client";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import Heading from "@/components/modules/Heading";
-import ArticleContent from "@/components/modules/ArticleContent";
-import RichtextField from "@/components/modules/RichtextField";
+import Heading from "@/components/ui/Heading";
+import ArticleContent from "@/components/ui/ArticleContent";
+import RichtextField from "@/components/ui/RichtextField";
 
 const Wrapper = styled.div`
   .b__content__variant04 {

@@ -1,12 +1,12 @@
-import Button from "@/components/modules/Button";
+import Button from "@/components/ui/Button";
 import parse from "html-react-parser";
 import Bounded from "@/components/wrappers/Bounded";
-import BlurryBlob from "@/components/modules/BlurryBlob";
-import Heading from "@/components/modules/Heading";
-import Description from "@/components/modules/Description";
-import { DotPattern } from "@/components/magicui/dot-pattern";
+import BlurryBlob from "@/components/ui/BlurryBlob";
+import Heading from "@/components/ui/Heading";
+import Description from "@/components/ui/Description";
+import { DotPattern } from "@/components/ui/DotPattern";
 import { cn } from "@/lib/utils";
-import { ConditionalBlurFade } from "@/components/modules/RevealAnimations";
+import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
 
 const HeroVariant01 = ({ data }) => {
   return (
@@ -18,13 +18,8 @@ const HeroVariant01 = ({ data }) => {
     >
       {data?.enable_background_pattern && (
         <DotPattern
-          width={20}
-          height={20}
-          cx={1}
-          cy={1}
-          cr={1}
           className={cn(
-            "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] "
+            "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"
           )}
         />
       )}

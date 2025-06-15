@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import Button from "@/components/modules/Button";
+import Button from "@/components/ui/Button";
 import { useForm } from "react-hook-form";
 import { useFormspark } from "@formspark/use-formspark";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import BlurryBlob from "@/components/modules/BlurryBlob";
-import Pill from "@/components/modules/Pill";
-import Heading from "@/components/modules/Heading";
-import Form from "@/components/modules/Form";
+import BlurryBlob from "@/components/ui/BlurryBlob";
+import Pill from "@/components/ui/Pill";
+import Heading from "@/components/ui/Heading";
+import Form from "@/components/ui/Form";
 import { stegaClean } from "@sanity/client/stega";
 import parse from "html-react-parser";
 

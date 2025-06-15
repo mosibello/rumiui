@@ -1,11 +1,14 @@
-import Button from "@/components/modules/Button";
+import Button from "@/components/ui/Button";
 import Bounded from "@/components/wrappers/Bounded";
 import { stegaClean } from "@sanity/client/stega";
-import Heading from "@/components/modules/Heading";
+import Heading from "@/components/ui/Heading";
 import Image from "next/image";
 import urlFor from "@/lib/imageUrlBuilder";
-import BackgroundTint from "@/components/modules/BackgroundTint";
-import { ConditionalBlurFade } from "@/components/modules/RevealAnimations";
+import BackgroundTint from "@/components/ui/BackgroundTint";
+import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
+import { cn } from "@/lib/utils";
+import { GridPattern } from "@/components/ui/GridPattern";
+import { DotPattern } from "@/components/ui/DotPattern";
 
 const HeroVariant03 = ({ data }) => {
   return (
@@ -15,6 +18,26 @@ const HeroVariant03 = ({ data }) => {
       scopedCss={data.scoped_css}
       className={`b__hero__variant03 overflow-hidden relative ${data.background_theme && `u__background-${stegaClean(data.background_theme)}`}`}
     >
+      {data?.enable_background_pattern && (
+        <>
+          {data?.background_pattern_type === "grid" && (
+            <GridPattern
+              className={cn(
+                "fill-emerald-500/40",
+                "[mask-image:radial-gradient(circle_at_center,white,transparent_70%)]"
+              )}
+            />
+          )}
+          {data?.background_pattern_type === "dots" && (
+            <DotPattern
+              className={cn(
+                "fill-emerald-500/40",
+                "[mask-image:radial-gradient(circle_at_center,white,transparent_70%)]"
+              )}
+            />
+          )}
+        </>
+      )}
       {data.image && (
         <div className="c__absolute-image">
           <Image

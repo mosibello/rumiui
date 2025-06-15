@@ -1,5 +1,5 @@
 "use client";
-import Heading from "@/components/modules/Heading";
+import Heading from "@/components/ui/Heading";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
 

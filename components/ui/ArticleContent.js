@@ -1,7 +1,7 @@
 "use client";
 import styled from "styled-components";
 import { PortableText } from "@portabletext/react";
-import PortableTextComponents from "@/components/modules/PortableTextComponents";
+import PortableTextComponents from "@/components/ui/PortableTextComponents";
 
 const Component = styled.div`
   &.c__article-content {

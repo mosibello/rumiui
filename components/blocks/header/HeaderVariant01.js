@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Button from "@/components/modules/Button";
+import Button from "@/components/ui/Button";
 import { organization } from "@/lib/constants";
 import { stegaClean } from "@sanity/client/stega";
 

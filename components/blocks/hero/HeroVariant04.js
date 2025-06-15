@@ -1,17 +1,17 @@
 "use client";
-import Button from "@/components/modules/Button";
+import Button from "@/components/ui/Button";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import BlurryBlob from "@/components/modules/BlurryBlob";
-import Pill from "@/components/modules/Pill";
+import BlurryBlob from "@/components/ui/BlurryBlob";
+import Pill from "@/components/ui/Pill";
 import Image from "next/image";
 import parse from "html-react-parser";
 import urlFor from "@/lib/imageUrlBuilder";
-import Heading from "@/components/modules/Heading";
-import Description from "@/components/modules/Description";
+import Heading from "@/components/ui/Heading";
+import Description from "@/components/ui/Description";
 import { cn } from "@/lib/utils";
-import { DotPattern } from "@/components/magicui/dot-pattern";
-import { ConditionalBlurFade } from "@/components/modules/RevealAnimations";
+import { DotPattern } from "@/components/ui/DotPattern";
+import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
 
 const Wrapper = styled.div`
   .b__hero__variant04 {
@@ -96,13 +96,8 @@ const HeroVariant04 = ({ data }) => {
     >
       {data?.enable_background_pattern && (
         <DotPattern
-          width={20}
-          height={20}
-          cx={1}
-          cy={1}
-          cr={1}
           className={cn(
-            "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] "
+            "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"
           )}
         />
       )}

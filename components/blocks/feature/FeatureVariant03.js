@@ -2,7 +2,7 @@
 import parse from "html-react-parser";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import IconListItem from "@/components/modules/IconListItem";
+import IconListItem from "@/components/ui/IconListItem";
 import { PortableText } from "@portabletext/react";
 import urlFor from "@/lib/imageUrlBuilder";
 

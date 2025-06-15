@@ -1,12 +1,12 @@
 "use client";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import ResourceCard from "@/components/modules/ResourceCard";
+import ResourceCard from "@/components/ui/ResourceCard";
 import { baseUrl } from "@/lib/constants";
 import { stegaClean } from "@sanity/client/stega";
 import urlFor from "@/lib/imageUrlBuilder";
-import Button from "@/components/modules/Button";
-import Pagination from "@/components/modules/Pagination";
+import Button from "@/components/ui/Button";
+import Pagination from "@/components/ui/Pagination";
 
 const Wrapper = styled.div`
   .b__archive__variant01 {

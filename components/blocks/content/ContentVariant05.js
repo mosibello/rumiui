@@ -1,10 +1,10 @@
 "use client";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import Heading from "@/components/modules/Heading";
-import IconCard from "@/components/modules/IconCard";
-import RichtextField from "@/components/modules/RichtextField";
-import Description from "@/components/modules/Description";
+import Heading from "@/components/ui/Heading";
+import IconCard from "@/components/ui/IconCard";
+import RichtextField from "@/components/ui/RichtextField";
+import Description from "@/components/ui/Description";
 import urlFor from "@/lib/imageUrlBuilder";
 
 const Wrapper = styled.div`

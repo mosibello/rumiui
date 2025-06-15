@@ -2,7 +2,7 @@
 import parse from "html-react-parser";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import IconCard from "@/components/modules/IconCard";
+import IconCard from "@/components/ui/IconCard";
 import urlFor from "@/lib/imageUrlBuilder";
 import { stegaClean } from "@sanity/client/stega";
 

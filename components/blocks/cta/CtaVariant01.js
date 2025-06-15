@@ -1,8 +1,8 @@
 "use client";
 import styled from "styled-components";
 import Bounded from "@/components/wrappers/Bounded";
-import Heading from "@/components/modules/Heading";
-import Button from "@/components/modules/Button";
+import Heading from "@/components/ui/Heading";
+import Button from "@/components/ui/Button";
 import { stegaClean } from "@sanity/client/stega";
 
 const Wrapper = styled.div`

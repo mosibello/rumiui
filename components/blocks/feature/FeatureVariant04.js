@@ -2,8 +2,8 @@
 import parse from "html-react-parser";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import BlurryBlob from "@/components/modules/BlurryBlob";
-import CardWithSpotlightHeading from "@/components/modules/CardWithSpotlightHeading";
+import BlurryBlob from "@/components/ui/BlurryBlob";
+import CardWithSpotlightHeading from "@/components/ui/CardWithSpotlightHeading";
 
 const Wrapper = styled.div`
   .b__feature__variant04 {
