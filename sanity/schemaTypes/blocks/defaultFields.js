@@ -116,3 +116,33 @@ export const generateLinkField = (name, title, depth = 2, maxDepth = 4) => {
     },
   };
 };
+
+export const generateBackgroundPatternFields = ({
+  enableFieldName = "enable_background_pattern",
+  patternFieldName = "background_pattern_type",
+  enableFieldTitle = "Enable Background Pattern",
+  patternFieldTitle = "Background Pattern Type",
+  group = "style",
+} = {}) => [
+  defineField({
+    name: enableFieldName,
+    title: enableFieldTitle,
+    type: "boolean",
+    initialValue: () => false,
+    group,
+  }),
+  defineField({
+    name: patternFieldName,
+    title: patternFieldTitle,
+    type: "string",
+    initialValue: "",
+    group,
+    hidden: ({ parent }) => !parent?.[enableFieldName],
+    options: {
+      list: [
+        { title: "Dots", value: "dots" },
+        { title: "Grid", value: "grid" },
+      ],
+    },
+  }),
+];
