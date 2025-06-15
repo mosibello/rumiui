@@ -46,7 +46,7 @@ const HeroVariant03 = ({ data }) => {
           {data.heading && (
             <ConditionalBlurFade enabled={data?.enable_animations}>
               <div
-                className={`c__heading-wrapper ${data.description ? `mb-[1.5rem]` : `mb-0`}`}
+                className={`c__heading-wrapper ${data.description ? `mb-[1rem]` : `mb-0`}`}
               >
                 <Heading
                   tag={data.heading_tag || `h1`}
