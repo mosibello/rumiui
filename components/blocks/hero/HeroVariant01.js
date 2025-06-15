@@ -4,7 +4,7 @@ import Bounded from "@/components/wrappers/Bounded";
 import BlurryBlob from "@/components/ui/BlurryBlob";
 import Heading from "@/components/ui/Heading";
 import Description from "@/components/ui/Description";
-import { DotPattern } from "@/components/ui/DotPattern";
+import { BackgroundPattern } from "@/components/ui/BackgroundPatterns";
 import { cn } from "@/lib/utils";
 import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
 
@@ -17,7 +17,8 @@ const HeroVariant01 = ({ data }) => {
       className="b__hero__variant01 overflow-hidden relative"
     >
       {data?.enable_background_pattern && (
-        <DotPattern
+        <BackgroundPattern
+          patternType={data?.background_pattern_type ?? `dots`}
           className={cn(
             "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"
           )}

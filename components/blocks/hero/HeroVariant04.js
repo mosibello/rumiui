@@ -10,7 +10,7 @@ import urlFor from "@/lib/imageUrlBuilder";
 import Heading from "@/components/ui/Heading";
 import Description from "@/components/ui/Description";
 import { cn } from "@/lib/utils";
-import { DotPattern } from "@/components/ui/DotPattern";
+import { BackgroundPattern } from "@/components/ui/BackgroundPatterns";
 import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
 
 const Wrapper = styled.div`
@@ -95,7 +95,8 @@ const HeroVariant04 = ({ data }) => {
       className="b__hero__variant04 overflow-hidden relative py-0"
     >
       {data?.enable_background_pattern && (
-        <DotPattern
+        <BackgroundPattern
+          patternType={data?.background_pattern_type ?? `dots`}
           className={cn(
             "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"
           )}

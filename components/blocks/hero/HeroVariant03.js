@@ -7,8 +7,7 @@ import urlFor from "@/lib/imageUrlBuilder";
 import BackgroundTint from "@/components/ui/BackgroundTint";
 import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
 import { cn } from "@/lib/utils";
-import { GridPattern } from "@/components/ui/GridPattern";
-import { DotPattern } from "@/components/ui/DotPattern";
+import { BackgroundPattern } from "@/components/ui/BackgroundPatterns";
 
 const HeroVariant03 = ({ data }) => {
   return (
@@ -19,24 +18,13 @@ const HeroVariant03 = ({ data }) => {
       className={`b__hero__variant03 overflow-hidden relative ${data.background_theme && `u__background-${stegaClean(data.background_theme)}`}`}
     >
       {data?.enable_background_pattern && (
-        <>
-          {data?.background_pattern_type === "grid" && (
-            <GridPattern
-              className={cn(
-                "fill-emerald-500/40",
-                "[mask-image:radial-gradient(circle_at_center,white,transparent_70%)]"
-              )}
-            />
+        <BackgroundPattern
+          patternType={data?.background_pattern_type ?? `dots`}
+          className={cn(
+            "fill-emerald-500/40",
+            "[mask-image:radial-gradient(circle_at_center,white,transparent_70%)]"
           )}
-          {data?.background_pattern_type === "dots" && (
-            <DotPattern
-              className={cn(
-                "fill-emerald-500/40",
-                "[mask-image:radial-gradient(circle_at_center,white,transparent_70%)]"
-              )}
-            />
-          )}
-        </>
+        />
       )}
       {data.image && (
         <div className="c__absolute-image">

@@ -117,7 +117,7 @@ export const generateLinkField = (name, title, depth = 2, maxDepth = 4) => {
   };
 };
 
-export const generateBackgroundPatternFields = ({
+export const generateBackgroundPatternField = ({
   enableFieldName = "enable_background_pattern",
   patternFieldName = "background_pattern_type",
   enableFieldTitle = "Enable Background Pattern",

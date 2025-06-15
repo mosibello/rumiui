@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { scopedCss } from "../defaultFields";
+import { scopedCss, generateBackgroundPatternField } from "../defaultFields";
 const blockCategory = "hero";
 const HeroVariant02 = defineType({
   name: "HeroVariant02",
@@ -96,13 +96,7 @@ const HeroVariant02 = defineType({
       initialValue: () => false,
       group: "style",
     }),
-    defineField({
-      name: "enable_background_pattern",
-      title: "Enable Background Pattern",
-      type: "boolean",
-      initialValue: () => false,
-      group: "style",
-    }),
+    ...generateBackgroundPatternField(),
   ],
   preview: {
     select: {

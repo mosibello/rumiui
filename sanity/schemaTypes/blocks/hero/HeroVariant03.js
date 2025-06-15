@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 import {
   generateHeadingTagField,
   scopedCss,
-  generateBackgroundPatternFields,
+  generateBackgroundPatternField,
 } from "../defaultFields";
 const blockCategory = "hero";
 const HeroVariant03 = defineType({
@@ -127,7 +127,7 @@ const HeroVariant03 = defineType({
       initialValue: () => false,
       group: "style",
     }),
-    ...generateBackgroundPatternFields(),
+    ...generateBackgroundPatternField(),
   ],
   preview: {
     select: {

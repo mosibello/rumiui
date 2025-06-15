@@ -8,7 +8,7 @@ import Pill from "@/components/ui/Pill";
 import Image from "next/image";
 import urlFor from "@/lib/imageUrlBuilder";
 import { cn } from "@/lib/utils";
-import { DotPattern } from "@/components/ui/DotPattern";
+import { BackgroundPattern } from "@/components/ui/BackgroundPatterns";
 import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
 import Heading from "@/components/ui/Heading";
 import Description from "@/components/ui/Description";
@@ -48,6 +48,7 @@ const Wrapper = styled.div`
 `;
 
 const HeroVariant02 = ({ data }) => {
+  const patternType = data?.background_pattern_type ?? `dots`;
   return (
     <Bounded
       id={data._key}
@@ -56,7 +57,8 @@ const HeroVariant02 = ({ data }) => {
       className="b__hero__variant02 overflow-hidden relative"
     >
       {data?.enable_background_pattern && (
-        <DotPattern
+        <BackgroundPattern
+          patternType={data?.background_pattern_type ?? `dots`}
           className={cn(
             "[mask-image:linear-gradient(to_top_left,white,transparent,transparent)]"
           )}
