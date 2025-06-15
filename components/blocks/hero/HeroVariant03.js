@@ -21,7 +21,6 @@ const HeroVariant03 = ({ data }) => {
         <BackgroundPattern
           patternType={data?.background_pattern_type ?? `dots`}
           className={cn(
-            "fill-emerald-500/40",
             "[mask-image:radial-gradient(circle_at_center,white,transparent_70%)]"
           )}
         />
