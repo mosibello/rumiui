@@ -168,6 +168,7 @@ const Component = styled.div`
 const Button = ({
   title,
   destination,
+  target,
   className,
   linkClassName,
   theme = `primary`,
@@ -217,6 +218,8 @@ const Button = ({
               <Link
                 className={`c__button__anchor-element ${linkClassName ? linkClassName : ``}`}
                 href={destination || "#"}
+                target={target ? "_blank" : "_self"}
+                rel={target ? "noopener noreferrer" : undefined}
               >
                 <span
                   className={`c__button c__button--${stegaClean(theme)} ${

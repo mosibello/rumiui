@@ -3,6 +3,7 @@ import {
   scopedCss,
   generateHeadingTagField,
   generateBackgroundPatternField,
+  generateButtonField,
 } from "../defaultFields";
 
 const blockLabel = `Hero Variant 01`;
@@ -78,19 +79,17 @@ const HeroVariant01 = defineType({
       rows: 4,
       group: "content",
     }),
-    defineField({
-      name: "button_title",
-      title: "Button Title",
-      type: "string",
-      initialValue: "Learn More",
-      group: "content",
+    ...generateButtonField({
+      name: "button",
+      titleLabel: "Button Title",
+      destinationLabel: "Button Destination",
     }),
-    defineField({
-      name: "button_destination",
-      title: "Button Destination",
-      type: "string",
-      group: "content",
+    ...generateButtonField({
+      name: "button_two",
+      titleLabel: "Button Two Title",
+      destinationLabel: "Button Two Destination",
     }),
+
     defineField({
       name: "enable_animations",
       title: "Enable Animations",

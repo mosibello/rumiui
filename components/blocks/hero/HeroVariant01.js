@@ -84,6 +84,8 @@ const HeroVariant01 = ({ data }) => {
                 <Button
                   destination={data.button_destination}
                   title={data.button_title}
+                  target={data.button_open_in_new_tab}
+                  theme={data.button_theme}
                 />
               </ConditionalBlurFade>
             </div>

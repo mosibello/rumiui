@@ -146,3 +146,51 @@ export const generateBackgroundPatternField = ({
     },
   }),
 ];
+
+export const generateButtonField = ({
+  name,
+  titleLabel = "Button Title",
+  destinationLabel = "Button Destination",
+  openInNewTabLabel = "Open in New Tab",
+  themeLabel = "Button Theme",
+  group = "content",
+  initialTitle = "Learn More",
+} = {}) => [
+  defineField({
+    name: `${name}_title`,
+    title: titleLabel,
+    type: "string",
+    initialValue: initialTitle,
+    group,
+  }),
+  defineField({
+    name: `${name}_destination`,
+    title: destinationLabel,
+    type: "string",
+    group,
+  }),
+  defineField({
+    name: `${name}_open_in_new_tab`,
+    title: openInNewTabLabel,
+    type: "boolean",
+    initialValue: false,
+    group,
+    hidden: ({ parent }) => !parent?.[`${name}_destination`],
+  }),
+  defineField({
+    name: `${name}_theme`,
+    title: themeLabel,
+    type: "string",
+    initialValue: "primary",
+    group,
+    hidden: ({ parent }) => !parent?.[`${name}_title`],
+    options: {
+      list: [
+        { title: "Primary", value: "primary" },
+        { title: "Secondary", value: "secondary" },
+        { title: "Link", value: "link" },
+        { title: "Ghost", value: "ghost" },
+      ],
+    },
+  }),
+];

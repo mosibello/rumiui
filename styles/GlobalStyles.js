@@ -105,6 +105,10 @@ const Styles = css`
     margin-bottom: 1rem;
   }
 
+  button {
+    cursor: pointer;
+  }
+
   a {
     color: var(--t-anchor-color);
     text-decoration: underline;
