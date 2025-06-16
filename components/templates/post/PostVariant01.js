@@ -40,7 +40,7 @@ const PostVariant01 = ({ data }) => {
       id={data?._key}
       type={data?._type}
       scopedCss={data?.scoped_css}
-      className="b__post__variant01 overflow-hidden position-relative"
+      className="b__post__variant01 overflow-hidden relative"
     >
       <Wrapper>
         <div className="container">
@@ -69,7 +69,7 @@ const PostVariant01 = ({ data }) => {
               )}
             </div>
             {data.featured_image && (
-              <div className="b__post__variant01__image-wrapper position-relative mb-4 pb-2">
+              <div className="b__post__variant01__image-wrapper relative mb-4 pb-2">
                 <Image
                   className="b__hero__variant04__image"
                   fill={true}

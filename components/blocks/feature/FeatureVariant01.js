@@ -47,9 +47,9 @@ const FeatureVariant01 = ({ data }) => {
       id={data._key}
       type={data._type}
       scopedCss={data.scoped_css}
-      className="b__feature__variant01 overflow-hidden position-relative"
+      className="b__feature__variant01 overflow-hidden relative"
     >
-      <Wrapper className="container position-relative u__z-index-1">
+      <Wrapper className="container relative u__z-index-1">
         <div
           className={`row b__feature__variant01__row ${data.align_items_center ? "align-items-center" : ``}`}
         >

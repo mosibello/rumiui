@@ -1,12 +1,14 @@
 "use client";
-import React from "react";
+import React, { useMemo, useCallback } from "react";
+import { Controller } from "react-hook-form";
 import parse from "html-react-parser";
 import styled from "styled-components";
 import Button from "./Button";
 import { stegaClean } from "@sanity/client/stega";
-import { checkValidJSONString, checkValidJS } from "@/lib/helpers";
+import { checkValidJS } from "@/lib/helpers";
 import { usePathname } from "next/navigation";
 import { baseUrl } from "@/lib/constants";
+import Select from "@/components/ui/Select";
 
 const Component = styled.div`
   .c {
@@ -65,6 +67,52 @@ const Component = styled.div`
           border: 1px solid var(--t-cp-error-400);
         }
       }
+      &__select {
+        padding: 5px 8px !important;
+        .select {
+          &__control {
+            border: none;
+            min-height: 0;
+            box-shadow: none !important;
+          }
+          &__value-container {
+            padding: 0;
+          }
+          &__input-container,
+          &__input {
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+          }
+          &__multi-value {
+            background-color: #eee;
+            border-radius: 8px;
+            &__remove {
+              position: relative;
+              top: 0.5px;
+              &:hover {
+                background: unset;
+                color: unset;
+              }
+            }
+          }
+          &__menu {
+            left: 0;
+            border-radius: var(--t-form-input-border-radius);
+          }
+          &__option {
+            &--is {
+              &-focused {
+                background-color: var(--t-form-select-selected-color);
+              }
+              &-selected {
+                background-color: var(--t-form-select-selected-color);
+                color: var(--t-body-color);
+              }
+            }
+          }
+        }
+      }
     }
   }
   form {
@@ -81,6 +129,7 @@ const Component = styled.div`
     input[type="number"],
     input[type="file"],
     select,
+    .c__form__select,
     textarea {
       color: var(--t-body-color);
       border: 1px solid var(--t-form-input-border-color);
@@ -112,7 +161,7 @@ const Component = styled.div`
       -webkit-appearance: none;
       appearance: none;
       -moz-appearance: none;
-      background-image: url(https://www.taylor.com/hubfs/ICONS/chev-down.svg);
+      background-image: url(https://23219927.fs1.hubspotusercontent-na1.net/hubfs/23219927/chev-down.svg);
       background-repeat: no-repeat;
       background-size: 13px;
       background-position: 97% 50%;
@@ -121,126 +170,202 @@ const Component = styled.div`
         background-position: 98% 50%;
       }
     }
+    textarea {
+      min-height: 120px;
+    }
   }
 `;
+
+// Separate field components for better performance - wrapped with forwardRef
+const TextAreaField = React.memo(
+  React.forwardRef(({ field, register, error }, ref) => (
+    <textarea
+      ref={ref}
+      className={`c__form__input ${error ? "c__form__input--error" : ""}`}
+      name={field.name}
+      placeholder={field.placeholder}
+      defaultValue={field.defaultValue || ""}
+      {...register(field.name, {
+        required: field.required?.message || field.required,
+        pattern: field.pattern || null,
+      })}
+    />
+  ))
+);
+
+const SelectField = React.memo(
+  React.forwardRef(({ field, control, error }, ref) => (
+    <Controller
+      name={field.name}
+      control={control}
+      rules={{
+        required: field.required?.message || field.required,
+        pattern: field.pattern || null,
+      }}
+      defaultValue={field.defaultValue || null}
+      render={({ field: controllerField }) => (
+        <Select
+          {...controllerField}
+          ref={ref}
+          name={field.name}
+          className={`c__form__select ${error ? "c__form__input--error" : ""}`}
+          options={field.options}
+          placeholder={field.placeholder}
+          isMulti={field.isMulti}
+          onChange={controllerField.onChange}
+          onBlur={controllerField.onBlur}
+          value={controllerField.value ?? (field.isMulti ? [] : null)}
+        />
+      )}
+    />
+  ))
+);
+
+const InputField = React.memo(
+  React.forwardRef(({ field, register, error }, ref) => (
+    <input
+      ref={ref}
+      className={`c__form__input ${error ? "c__form__input--error" : ""}`}
+      name={field.name}
+      type={field.type}
+      placeholder={field.placeholder}
+      defaultValue={field.defaultValue || ""}
+      {...register(field.name, {
+        required: field.required?.message || field.required,
+        pattern: field.pattern || null,
+      })}
+    />
+  ))
+);
+
+const FormField = React.memo(({ field, register, control, error }) => {
+  const renderInput = useCallback(() => {
+    switch (field.type) {
+      case "textarea":
+        return (
+          <TextAreaField field={field} register={register} error={error} />
+        );
+      case "select":
+        return <SelectField field={field} control={control} error={error} />;
+      default:
+        return <InputField field={field} register={register} error={error} />;
+    }
+  }, [field, register, control, error]);
+
+  return (
+    <div
+      className={`c__form__fieldset c__form__fieldset--${field.width} ${
+        field.type === "hidden" ? "c__form__fieldset--hidden" : ""
+      }`}
+    >
+      <div className="c__form__field">
+        {field.label && (
+          <label className="c__form__label" htmlFor={field.name}>
+            {field.label}
+          </label>
+        )}
+        <div className="c__form__input-wrapper">{renderInput()}</div>
+      </div>
+      {error && (
+        <div id={`${field.name}-error`} className="c__form__error">
+          <span>{error.message}</span>
+        </div>
+      )}
+    </div>
+  );
+});
 
 const Form = ({
   formFields,
   register,
+  control,
   errors,
   isValid,
   onSubmit,
   payloadPosting,
   formMessage,
+  buttonTitle = "Get Started",
 }) => {
-  formFields = stegaClean(`${formFields}`);
-  formFields = checkValidJS(`return ${formFields}`)
-    ? new Function(`return ${formFields}`)()
-    : null;
-  parse(`return ${formFields}`);
   const pathname = usePathname();
 
-  // console.log(formFields);
+  // Memoize form fields parsing to avoid re-parsing on every render
+  const parsedFormFields = useMemo(() => {
+    if (!formFields) return null;
+
+    const cleanedFields = stegaClean(`${formFields}`);
+
+    try {
+      return checkValidJS(`return ${cleanedFields}`)
+        ? new Function(`return ${cleanedFields}`)()
+        : null;
+    } catch (error) {
+      console.error("Error parsing form fields:", error);
+      return null;
+    }
+  }, [formFields]);
+
+  // Memoize the hidden input registration
+  const hiddenInputProps = useMemo(() => register("page_url"), [register]);
+
+  // Early return if no valid form fields
+  if (!parsedFormFields || !Array.isArray(parsedFormFields)) {
+    return (
+      <Component className="c__form">
+        <div className="c__form__message c__form__message--error">
+          Error rendering the form. <br />
+          Please check form fields are set up correctly
+        </div>
+      </Component>
+    );
+  }
+
   return (
     <Component className="c__form">
-      {formFields && formFields.constructor === Array ? (
-        <form onSubmit={onSubmit} autoComplete="off">
-          <input
-            type="hidden"
-            value={`${baseUrl}${pathname}`}
-            {...register("page_url")}
-          />
-          <div className="c__form__fields-wrapper">
-            {formFields.map((elem) => {
-              const {
-                name,
-                label,
-                placeholder,
-                type,
-                width,
-                required,
-                pattern,
-                defaultValue,
-              } = elem;
-              return (
-                <div
-                  key={name}
-                  className={`c__form__fieldset c__form__fieldset--${width} ${
-                    type === "hidden" ? `c__form__fieldset--hidden` : ``
-                  }`}
-                >
-                  <div className="c__form__field">
-                    {label && (
-                      <label className="c__form__label" htmlFor={name}>
-                        {label}
-                      </label>
-                    )}
-                    <div className="c__form__input-wrapper">
-                      {type === "textarea" ? (
-                        <textarea
-                          className={`c__form__input ${
-                            errors[elem.name] ? `c__form__input--error` : ``
-                          }`}
-                          name={name}
-                          type={type}
-                          placeholder={placeholder}
-                          defaultValue={defaultValue ? defaultValue : null}
-                          {...register(name, {
-                            required: required ? required.message : required,
-                            pattern: pattern ? pattern : null,
-                          })}
-                        ></textarea>
-                      ) : (
-                        <input
-                          className={`c__form__input ${
-                            errors[elem.name] ? `c__form__input--error` : ``
-                          }`}
-                          name={name}
-                          type={type}
-                          placeholder={placeholder}
-                          defaultValue={defaultValue ? defaultValue : null}
-                          {...register(name, {
-                            required: required ? required.message : required,
-                            pattern: pattern ? pattern : null,
-                          })}
-                        />
-                      )}
-                    </div>
-                  </div>
-                  {errors[elem.name] && (
-                    <div id={`${elem.name}-error`} className="c__form__error">
-                      <span>{errors[elem.name].message}</span>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-          <div className="c__form__button-wrapper">
-            <Button
-              actionable
-              title="Get Started"
-              type="submit"
-              isLoading={payloadPosting}
-              // isDisabled={!isValid}
+      <form onSubmit={onSubmit} autoComplete="off">
+        <input
+          type="hidden"
+          value={`${baseUrl}${pathname}`}
+          {...hiddenInputProps}
+        />
+
+        <div className="c__form__fields-wrapper">
+          {parsedFormFields.map((field) => (
+            <FormField
+              key={field.name}
+              field={field}
+              register={register}
+              control={control}
+              error={errors[field.name]}
             />
-          </div>
-          {formMessage && (
-            <div
-              className={`c__form__message c__form__message--${formMessage.type}`}
-            >
-              {parse(formMessage.message)}
-            </div>
-          )}
-        </form>
-      ) : (
-        <div className={`c__form__message c__form__message--error`}>
-          Error rendering the form. <br />
-          Please check form fields are set up corectly
+          ))}
         </div>
-      )}
+
+        <div className="c__form__button-wrapper">
+          <Button
+            actionable
+            title={buttonTitle}
+            type="submit"
+            isLoading={payloadPosting}
+            // isDisabled={!isValid}
+          />
+        </div>
+
+        {formMessage && (
+          <div
+            className={`c__form__message c__form__message--${formMessage.type}`}
+          >
+            {parse(formMessage.message)}
+          </div>
+        )}
+      </form>
     </Component>
   );
 };
+
+// Set display names for better debugging
+TextAreaField.displayName = "TextAreaField";
+SelectField.displayName = "SelectField";
+InputField.displayName = "InputField";
+FormField.displayName = "FormField";
 
 export default Form;

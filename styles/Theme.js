@@ -89,6 +89,7 @@ const Theme = css`
     --t-form-input-focus-box-shadow: 0px 0px 0px 4px #780df21f;
     --t-form-input-border-color: #d4d4d4;
     --t-form-placeholder-color: #a8a9ab;
+    --t-form-select-selected-color: #f4f4f5;
     // Box shadows
     --t-box-shadow-xs: 0px 1px 2px rgba(16, 24, 40, 0.05);
     --t-box-shadow-sm: 0px 1px 3px rgba(16, 24, 40, 0.1),

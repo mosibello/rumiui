@@ -3,6 +3,7 @@ import {
   scopedCss,
   generateHeadingTagField,
   generateHeadingSizeField,
+  generateBackgroundPatternField,
 } from "../defaultFields";
 const blockCategory = "hero";
 const HeroVariant05 = defineType({
@@ -30,20 +31,6 @@ const HeroVariant05 = defineType({
       hidden: true,
     }),
     defineField(scopedCss),
-    defineField({
-      name: "enable_blobs",
-      title: "Enable Blobs",
-      type: "boolean",
-      initialValue: () => false,
-      group: "style",
-    }),
-    defineField({
-      name: "align_items_center",
-      title: "Align Items Center",
-      type: "boolean",
-      initialValue: () => false,
-      group: "style",
-    }),
     defineField({
       name: "label",
       title: "Label",
@@ -88,6 +75,28 @@ const HeroVariant05 = defineType({
       to: [{ type: "form" }],
       group: "content",
     }),
+    defineField({
+      name: "enable_blobs",
+      title: "Enable Blobs",
+      type: "boolean",
+      initialValue: () => false,
+      group: "style",
+    }),
+    defineField({
+      name: "align_items_center",
+      title: "Align Items Center",
+      type: "boolean",
+      initialValue: () => false,
+      group: "style",
+    }),
+    defineField({
+      name: "enable_animations",
+      title: "Enable Animations",
+      type: "boolean",
+      initialValue: () => false,
+      group: "style",
+    }),
+    ...generateBackgroundPatternField(),
   ],
   preview: {
     select: {

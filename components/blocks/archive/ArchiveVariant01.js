@@ -27,7 +27,7 @@ const ArchiveVariant01 = ({
       id={data?._key}
       type={data?._type}
       scopedCss={data?.scoped_css}
-      className="b__archive__variant01 overflow-hidden position-relative"
+      className="b__archive__variant01 overflow-hidden relative"
     >
       <Wrapper>
         <div className="container">

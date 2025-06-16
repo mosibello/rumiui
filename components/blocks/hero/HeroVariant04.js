@@ -5,7 +5,6 @@ import styled from "styled-components";
 import BlurryBlob from "@/components/ui/BlurryBlob";
 import Pill from "@/components/ui/Pill";
 import Image from "next/image";
-import parse from "html-react-parser";
 import urlFor from "@/lib/imageUrlBuilder";
 import Heading from "@/components/ui/Heading";
 import Description from "@/components/ui/Description";
@@ -118,11 +117,18 @@ const HeroVariant04 = ({ data }) => {
           <div className="row b__hero__variant04__row">
             <div className="col-lg-6 b__hero__variant04__col--content">
               <div className="b__hero__variant04__content-wrapper">
-                {data.label && <Pill title={data.label} />}
-                {data.heading && (
+                {data.label && (
                   <ConditionalBlurFade
                     enabled={data?.enable_animations}
                     delay={0}
+                  >
+                    <Pill title={data.label} />
+                  </ConditionalBlurFade>
+                )}
+                {data.heading && (
+                  <ConditionalBlurFade
+                    enabled={data?.enable_animations}
+                    delay={0.1}
                   >
                     <div className="c__heading-wrapper mb-[1rem]">
                       <Heading tag={data.heading_tag} className="u__d2">
@@ -134,7 +140,7 @@ const HeroVariant04 = ({ data }) => {
                 {data.description && (
                   <ConditionalBlurFade
                     enabled={data?.enable_animations}
-                    delay={0.1}
+                    delay={0.2}
                   >
                     <div className="c__description-wrapper">
                       <Description>{data.description}</Description>
@@ -144,7 +150,7 @@ const HeroVariant04 = ({ data }) => {
 
                 <ConditionalBlurFade
                   enabled={data?.enable_animations}
-                  delay={0.2}
+                  delay={0.3}
                 >
                   <div className="c__button-wrapper mt-[2rem]">
                     <Button

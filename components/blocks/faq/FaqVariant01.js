@@ -18,10 +18,10 @@ const FaqVariant01 = ({ data }) => {
       id={data._key}
       type={data._type}
       scopedCss={data.scoped_css}
-      className="b__size-md b__faq__variant01 overflow-hidden position-relative"
+      className="b__size-md b__faq__variant01 overflow-hidden relative"
     >
       <Wrapper>
-        <div className="container position-relative u__z-index-1">
+        <div className="container relative u__z-index-1">
           <div className="text-center mx-auto">
             {data.heading && (
               <div className="c__heading-wrapper mb-4">

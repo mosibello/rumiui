@@ -28,7 +28,7 @@ const ContentVariant01 = ({ data }) => {
       className="b__content__variant01"
     >
       <Wrapper>
-        <div className="container position-relative">
+        <div className="container relative">
           <div className="row b__content__variant01__grid-row">
             <div className="col-lg-4">
               {data.heading && (

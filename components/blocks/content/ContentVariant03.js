@@ -25,7 +25,7 @@ const ContentVariant03 = ({ data }) => {
       className="b__content__variant03"
     >
       <Wrapper>
-        <div className="container position-relative u__z-index-1">
+        <div className="container relative u__z-index-1">
           <div className="text-center mx-auto">
             {data?.heading && (
               <div className="c__heading-wrapper mb-3">

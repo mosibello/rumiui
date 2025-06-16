@@ -161,7 +161,7 @@ const ContentVariant06 = ({ data }) => {
           <div className="b__content__variant06__row">
             {data.image && (
               <div className="b__content__variant06__column b__content__variant06__column--image">
-                <div className="b__content__variant06__image-wrapper position-relative">
+                <div className="b__content__variant06__image-wrapper relative">
                   <figure className="m-0 d-inline">
                     <Image
                       placeholder="blur"

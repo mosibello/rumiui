@@ -31,6 +31,16 @@ const Form = {
       },
       validation: (rule) => rule.required(),
     },
+    {
+      name: "button_title",
+      title: "Button Title",
+      type: "string",
+    },
+    {
+      name: "redirect_url",
+      title: "Redirect URL",
+      type: "string",
+    },
   ],
   preview: {
     select: {

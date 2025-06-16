@@ -24,7 +24,7 @@ const FeatureVariant03 = ({ data }) => {
       id={data._key}
       type={data._type}
       scopedCss={data.scoped_css}
-      className="b__feature__variant03 overflow-hidden position-relative"
+      className="b__feature__variant03 overflow-hidden relative"
     >
       <Wrapper>
         <div className="container">

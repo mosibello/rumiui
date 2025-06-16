@@ -41,7 +41,7 @@ const ResourceCard = ({
   buttonDestination,
 }) => {
   return (
-    <Component className="c__resource-card position-relative">
+    <Component className="c__resource-card relative">
       <div className="c__resource-card__top mb-3">
         {image && (
           <div className="c__resource-card__image-wrapper">
