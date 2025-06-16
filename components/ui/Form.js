@@ -8,7 +8,8 @@ import { stegaClean } from "@sanity/client/stega";
 import { checkValidJS } from "@/lib/helpers";
 import { usePathname } from "next/navigation";
 import { baseUrl } from "@/lib/constants";
-import Select from "@/components/ui/Select";
+import Select from "react-select";
+import { useId } from "react";
 
 const Component = styled.div`
   .c {
@@ -194,31 +195,38 @@ const TextAreaField = React.memo(
 );
 
 const SelectField = React.memo(
-  React.forwardRef(({ field, control, error }, ref) => (
-    <Controller
-      name={field.name}
-      control={control}
-      rules={{
-        required: field.required?.message || field.required,
-        pattern: field.pattern || null,
-      }}
-      defaultValue={field.defaultValue || null}
-      render={({ field: controllerField }) => (
-        <Select
-          {...controllerField}
-          ref={ref}
-          name={field.name}
-          className={`c__form__select ${error ? "c__form__input--error" : ""}`}
-          options={field.options}
-          placeholder={field.placeholder}
-          isMulti={field.isMulti}
-          onChange={controllerField.onChange}
-          onBlur={controllerField.onBlur}
-          value={controllerField.value ?? (field.isMulti ? [] : null)}
-        />
-      )}
-    />
-  ))
+  React.forwardRef(({ field, control, error }, ref) => {
+    const generatedId = useId();
+
+    return (
+      <Controller
+        name={field.name}
+        control={control}
+        rules={{
+          required: field.required?.message || field.required,
+          pattern: field.pattern || null,
+        }}
+        defaultValue={field.defaultValue || null}
+        render={({ field: controllerField }) => (
+          <Select
+            {...controllerField}
+            ref={ref}
+            instanceId={generatedId}
+            name={field.name}
+            className={`basic-multi-select c__form__select ${error ? "c__form__input--error" : ""}`}
+            classNamePrefix="select"
+            options={field.options}
+            placeholder={field.placeholder}
+            isMulti={field.isMulti}
+            closeMenuOnSelect={!field.isMulti}
+            onChange={controllerField.onChange}
+            onBlur={controllerField.onBlur}
+            value={controllerField.value ?? (field.isMulti ? [] : null)}
+          />
+        )}
+      />
+    );
+  })
 );
 
 const InputField = React.memo(
