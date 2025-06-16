@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 export function DotPattern({
@@ -11,7 +12,8 @@ export function DotPattern({
   className,
   ...props
 }) {
-  const id = `dot-pattern-${Math.random().toString(36).substr(2, 9)}`;
+  const dotId = useId();
+  const id = `dot-pattern-${dotId}`;
 
   return (
     <svg
@@ -59,7 +61,8 @@ export function GridPattern({
   className,
   ...props
 }) {
-  const id = `grid-pattern-${Math.random().toString(36).substr(2, 9)}`;
+  const gridId = useId();
+  const id = `grid-pattern-${gridId}`;
 
   return (
     <svg
