@@ -1,6 +1,5 @@
 "use client";
 import Button from "@/components/ui/Button";
-import parse from "html-react-parser";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
 import BlurryBlob from "@/components/ui/BlurryBlob";
