@@ -1,19 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Button from "@/components/ui/Button";
 import { useForm } from "react-hook-form";
-import { useFormspark } from "@formspark/use-formspark";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
 import BlurryBlob from "@/components/ui/BlurryBlob";
 import Pill from "@/components/ui/Pill";
 import Heading from "@/components/ui/Heading";
 import Form from "@/components/ui/Form";
-import { stegaClean } from "@sanity/client/stega";
 import parse from "html-react-parser";
 import { cn } from "@/lib/utils";
 import { BackgroundPattern } from "@/components/ui/BackgroundPatterns";
 import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
+import { useFormSubmission } from "@/hooks/useFormSubmission";
+import { ShineBorder } from "@/components/magicui/shine-border";
 
 const Wrapper = styled.div`
   .b__hero__variant05 {
@@ -63,41 +63,20 @@ const HeroVariant05 = ({ data }) => {
     formspark_id = null,
     button_title: formButtonTitle,
     redirect_url,
+    thankyou_message,
   } = data?.form || {};
 
-  const FORMSPARK_FORM_ID = stegaClean(formspark_id);
-
-  const [formMessage, setFormMessage] = useState(null);
-  const [payloadPosting, setPayloadPosting] = useState(false);
-  const [submit] = useFormspark({
-    formId: FORMSPARK_FORM_ID,
+  const { formMessage, payloadPosting, onSubmit } = useFormSubmission({
+    formspark_id,
+    thankyou_message,
+    redirect_url,
+    reset,
   });
 
-  const onSubmit = async (data) => {
-    setPayloadPosting(true);
-    setFormMessage(null);
-    try {
-      const payloadResponse = await submit(data);
-      setPayloadPosting(false);
-      reset();
-      setFormMessage({
-        type: `success`,
-        message: `Thanks for submitting the form!`,
-      });
-      if (redirect_url && typeof window !== "undefined") {
-        setTimeout(() => {
-          window.location.href = redirect_url;
-        }, 100);
-      }
-    } catch (err) {
-      console.log(err);
-      setPayloadPosting(false);
-      setFormMessage({
-        type: `error`,
-        message: `Oops, something went wrong. Please try again later`,
-      });
-    }
-  };
+  const beamColorList =
+    Array.isArray(data?.beam_color_list) && data.beam_color_list.length > 0
+      ? data.beam_color_list
+      : ["#A07CFE", "#FE8FB5", "#FFBE7B"];
 
   return (
     <Bounded
@@ -181,6 +160,9 @@ const HeroVariant05 = ({ data }) => {
                   delay={0.3}
                 >
                   <div className="b__hero__variant05__form-wrapper">
+                    {data?.enable_form_beam && (
+                      <ShineBorder shineColor={beamColorList} />
+                    )}
                     <Form
                       isValid={isValid}
                       formFields={form_fields.code}

@@ -98,6 +98,21 @@ const HeroVariant05 = defineType({
       initialValue: () => false,
       group: "style",
     }),
+    defineField({
+      name: "enable_form_beam",
+      title: "Enable Form Beam",
+      type: "boolean",
+      initialValue: () => false,
+      group: "style",
+    }),
+    defineField({
+      name: "Beam_color_list",
+      title: "Beam Color List",
+      type: "string",
+      hidden: ({ parent }) => !parent?.[`enable_form_beam`],
+      initialValue: "",
+      group: "style",
+    }),
     ...generateBackgroundPatternField(),
   ],
   preview: {

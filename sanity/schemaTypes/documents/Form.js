@@ -37,6 +37,12 @@ const Form = {
       type: "string",
     },
     {
+      name: "thankyou_message",
+      title: "Thank You Message",
+      type: "string",
+    },
+
+    {
       name: "redirect_url",
       title: "Redirect URL",
       type: "string",
