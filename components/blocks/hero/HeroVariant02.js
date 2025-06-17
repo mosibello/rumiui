@@ -113,10 +113,28 @@ const HeroVariant02 = ({ data }) => {
                 delay={0.3}
               >
                 <div className="c__button-wrapper mt-[2rem]">
-                  <Button
-                    destination={data.button_destination}
-                    title={data.button_title}
-                  />
+                  <div
+                    className={`flex flex-col gap-[12px] min-[500px]:flex-row`}
+                  >
+                    {data.button_title && (
+                      <Button
+                        destination={data.button_destination}
+                        title={data.button_title}
+                        target={data.button_open_in_new_tab}
+                        theme={data.button_theme}
+                        className={`${data.button_two_title ? "w-full min-[500px]:w-auto" : "w-auto"}`}
+                      />
+                    )}
+                    {data.button_two_title && (
+                      <Button
+                        destination={data.button_two_destination}
+                        title={data.button_two_title}
+                        target={data.button_two_open_in_new_tab}
+                        theme={data.button_two_theme}
+                        className="w-full min-[500px]:w-auto"
+                      />
+                    )}
+                  </div>
                 </div>
               </ConditionalBlurFade>
             )}

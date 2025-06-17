@@ -6,7 +6,7 @@ const Description = ({ children, className = "u__p", disableParse }) => {
   return (
     <>
       {children && (
-        <p className={`c__description ${className}`}>
+        <p className={`c__description ${stegaClean(className)}`}>
           {disableParse
             ? children
             : children.includes("<span")

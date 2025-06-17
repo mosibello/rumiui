@@ -14,7 +14,7 @@ export const scopedCss = {
 };
 
 export const generateHeadingTagField = (name, title) => {
-  return {
+  return defineField({
     name,
     title,
     type: "string",
@@ -31,11 +31,11 @@ export const generateHeadingTagField = (name, title) => {
         { title: "Span", value: "span" },
       ],
     },
-  };
+  });
 };
 
 export const generateHeadingSizeField = (name, title) => {
-  return {
+  return defineField({
     name,
     title,
     type: "string",
@@ -54,7 +54,7 @@ export const generateHeadingSizeField = (name, title) => {
         { title: "Paragraph", value: "p" },
       ],
     },
-  };
+  });
 };
 
 export const generateLinkField = (name, title, depth = 2, maxDepth = 4) => {
@@ -153,7 +153,7 @@ export const generateButtonField = ({
   destinationLabel = "Button Destination",
   openInNewTabLabel = "Open in New Tab",
   themeLabel = "Button Theme",
-  group = "content",
+  group = "style",
   initialTitle = "Learn More",
 } = {}) => [
   defineField({
@@ -188,6 +188,7 @@ export const generateButtonField = ({
       list: [
         { title: "Primary", value: "primary" },
         { title: "Secondary", value: "secondary" },
+        { title: "Inverted", value: "inverted" },
         { title: "Link", value: "link" },
         { title: "Ghost Primary", value: "ghost-primary" },
         { title: "Ghost Secondary", value: "ghost-secondary" },
@@ -195,3 +196,79 @@ export const generateButtonField = ({
     },
   }),
 ];
+
+export const generateRichtextField = (options = {}) => {
+  const { name = "content", title = "Content", initialValue = null } = options;
+
+  const defaultLoremIpsum = [
+    {
+      _type: "block",
+      _key: "default1",
+      style: "normal",
+      markDefs: [],
+      children: [
+        {
+          _type: "span",
+          _key: "span1",
+          text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat",
+          marks: ["strong"],
+        },
+      ],
+    },
+    {
+      _type: "block",
+      _key: "default2",
+      style: "normal",
+      markDefs: [],
+      children: [
+        {
+          _type: "span",
+          _key: "span2",
+          text: "Gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+          marks: [],
+        },
+      ],
+    },
+  ];
+
+  const field = {
+    name,
+    title,
+    type: "array",
+    of: [
+      {
+        type: "block",
+      },
+      {
+        type: "image",
+        fields: [
+          {
+            type: "text",
+            name: "alt",
+            title: "Alternative text",
+            options: {
+              isHighlighted: true,
+            },
+          },
+        ],
+      },
+      {
+        type: "code",
+        options: {
+          language: "html",
+          languageAlternatives: [{ title: "HTML", value: "html" }],
+        },
+      },
+    ],
+    group: "content",
+  };
+
+  // Add initialValue if provided or use lorem ipsum as default
+  if (initialValue !== null) {
+    field.initialValue = initialValue;
+  } else {
+    field.initialValue = defaultLoremIpsum;
+  }
+
+  return field;
+};

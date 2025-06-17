@@ -102,6 +102,9 @@ const Component = styled.div`
             border-radius: var(--t-form-input-border-radius);
           }
           &__option {
+            &:active {
+              background-color: var(--t-form-select-selected-color);
+            }
             &--is {
               &-focused {
                 background-color: var(--t-form-select-selected-color);

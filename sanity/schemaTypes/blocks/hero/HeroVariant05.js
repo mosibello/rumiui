@@ -4,6 +4,8 @@ import {
   generateHeadingTagField,
   generateHeadingSizeField,
   generateBackgroundPatternField,
+  generateButtonField,
+  generateRichtextField,
 } from "../defaultFields";
 const blockCategory = "hero";
 const HeroVariant05 = defineType({
@@ -45,8 +47,8 @@ const HeroVariant05 = defineType({
       initialValue: "Data to enrich your online business",
       group: "content",
     }),
-    defineField(generateHeadingTagField(`heading_tag`, `Heading Tag`)),
-    defineField(generateHeadingSizeField(`heading_size`, `Heading Size`)),
+    generateHeadingTagField(`heading_tag`, `Heading Tag`),
+    generateHeadingSizeField(`heading_size`, `Heading Size`),
     defineField({
       name: "content",
       title: "Content",
@@ -55,18 +57,18 @@ const HeroVariant05 = defineType({
       rows: 4,
       group: "content",
     }),
-    defineField({
-      name: "button_title",
-      title: "Button Title",
-      type: "string",
-      initialValue: "Learn More",
-      group: "content",
+
+    generateRichtextField({
+      name: "additional_content",
+      title: "Additional Content",
+      initialValue: [],
     }),
-    defineField({
-      name: "button_destination",
-      title: "Button Destination",
-      type: "string",
-      group: "content",
+
+    ...generateButtonField({
+      name: "button",
+      titleLabel: "Button Title",
+      destinationLabel: "Button Destination",
+      themeLabel: `Button Theme`,
     }),
     defineField({
       name: "form",

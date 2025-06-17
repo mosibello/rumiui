@@ -1,8 +1,10 @@
 import { defineField, defineType } from "sanity";
 import {
   generateHeadingTagField,
+  generateHeadingSizeField,
   scopedCss,
   generateBackgroundPatternField,
+  generateButtonField,
 } from "../defaultFields";
 const blockCategory = "hero";
 const HeroVariant03 = defineType({
@@ -78,12 +80,10 @@ const HeroVariant03 = defineType({
       initialValue: "Page Heading",
       group: "content",
     }),
-    defineField(generateHeadingTagField(`heading_tag`, `Heading Tag`)),
-    defineField(generateHeadingTagField(`heading_size`, `Heading Size`)),
-    defineField(generateHeadingTagField(`description_tag`, `Description Tag`)),
-    defineField(
-      generateHeadingTagField(`description_size`, `Description Size`)
-    ),
+    generateHeadingTagField(`heading_tag`, `Heading Tag`),
+    generateHeadingSizeField(`heading_size`, `Heading Size`),
+    generateHeadingTagField(`description_tag`, `Description Tag`),
+    generateHeadingSizeField(`description_size`, `Description Size`),
     defineField({
       name: "description",
       title: "Description",
@@ -93,33 +93,19 @@ const HeroVariant03 = defineType({
       rows: 4,
       group: "content",
     }),
-    defineField({
-      name: "button_title",
-      title: "Button Title",
-      type: "string",
-      initialValue: "Learn More",
-      group: "content",
+    ...generateButtonField({
+      name: "button",
+      titleLabel: "Button Title",
+      destinationLabel: "Button Destination",
+      themeLabel: `Button Theme`,
     }),
-    defineField({
-      name: "button_destination",
-      title: "Button Destination",
-      type: "string",
-      group: "content",
+    ...generateButtonField({
+      name: "button_two",
+      titleLabel: "Button Two Title",
+      destinationLabel: "Button Two Destination",
+      themeLabel: `Button Two Theme`,
     }),
-    defineField({
-      name: "button_theme",
-      title: "Button Theme",
-      type: "string",
-      initialValue: "secondary",
-      group: "content",
-      options: {
-        list: [
-          { title: "Primary", value: "primary" },
-          { title: "Secondary", value: "secondary" },
-          { title: "Inverted", value: "inverted" },
-        ],
-      },
-    }),
+
     defineField({
       name: "enable_animations",
       title: "Enable Animations",

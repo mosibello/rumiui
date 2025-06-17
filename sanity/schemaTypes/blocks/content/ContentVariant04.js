@@ -36,7 +36,7 @@ const ContentVariant04 = defineType({
       initialValue: "Powerful Section Heading to Insure Readability",
       group: "content",
     }),
-    defineField(generateHeadingTagField(`heading_tag`, `Heading Tag`)),
+    generateHeadingTagField(`heading_tag`, `Heading Tag`),
     defineField({
       name: "content_type",
       title: "Content Type",

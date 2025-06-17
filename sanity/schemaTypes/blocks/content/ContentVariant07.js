@@ -40,7 +40,7 @@ const ContentVariant07 = defineType({
       initialValue: "Data to Enrich Your Online Business",
       group: "content",
     }),
-    defineField(generateHeadingTagField(`heading_tag`, `Heading Tag`)),
+    generateHeadingTagField(`heading_tag`, `Heading Tag`),
     defineField({
       name: "content_left",
       title: "Content Left",
@@ -103,7 +103,7 @@ const ContentVariant07 = defineType({
       ],
       group: "content",
     }),
-    defineField(generateHeadingSizeField(`content_size`, `Content Size`)),
+    generateHeadingSizeField(`content_size`, `Content Size`),
     defineField({
       name: "theme",
       title: "Theme",

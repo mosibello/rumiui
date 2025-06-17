@@ -35,7 +35,7 @@ const HeroVariant01 = ({ data }) => {
         </>
       )}
       <div className="container relative u__z-index-1">
-        <div className={`${data.align_left ? `text-left` : `text-center`}`}>
+        <div className={`${data.align_left ? `text-left` : `md:text-center`}`}>
           {data.heading && (
             <div className="c__heading-wrapper mb-[1rem]">
               <ConditionalBlurFade enabled={data?.enable_animations}>
@@ -82,7 +82,7 @@ const HeroVariant01 = ({ data }) => {
                 delay={0.3}
               >
                 <div
-                  className={`flex flex-col gap-[12px] min-[500px]:flex-row ${data.align_left ? `justify-start` : `justify-center`}`}
+                  className={`flex flex-col gap-[12px] min-[500px]:flex-row ${data.align_left ? `justify-start` : `md:justify-center`}`}
                 >
                   {data.button_title && (
                     <Button

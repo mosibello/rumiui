@@ -7,7 +7,7 @@ const Heading = ({ children, className = "u__h1", tag, disableParse }) => {
   return (
     <>
       <HeadingTag
-        className={`c__heading ${className} u__font-weight-heading mb-[0.5rem]`}
+        className={`c__heading ${stegaClean(className)} u__font-weight-heading mb-[0.5rem]`}
       >
         {disableParse
           ? children

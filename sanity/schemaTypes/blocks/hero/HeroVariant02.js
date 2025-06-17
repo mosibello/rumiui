@@ -1,5 +1,9 @@
 import { defineField, defineType } from "sanity";
-import { scopedCss, generateBackgroundPatternField } from "../defaultFields";
+import {
+  scopedCss,
+  generateBackgroundPatternField,
+  generateButtonField,
+} from "../defaultFields";
 const blockCategory = "hero";
 const HeroVariant02 = defineType({
   name: "HeroVariant02",
@@ -62,18 +66,17 @@ const HeroVariant02 = defineType({
       rows: 4,
       group: "content",
     }),
-    defineField({
-      name: "button_title",
-      title: "Button Title",
-      type: "string",
-      initialValue: "Learn More",
-      group: "content",
+    ...generateButtonField({
+      name: "button",
+      titleLabel: "Button Title",
+      destinationLabel: "Button Destination",
+      themeLabel: `Button Theme`,
     }),
-    defineField({
-      name: "button_destination",
-      title: "Button Destination",
-      type: "string",
-      group: "content",
+    ...generateButtonField({
+      name: "button_two",
+      titleLabel: "Button Two Title",
+      destinationLabel: "Button Two Destination",
+      themeLabel: `Button Two Theme`,
     }),
     defineField({
       name: "image",

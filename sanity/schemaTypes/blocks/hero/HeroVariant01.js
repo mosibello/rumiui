@@ -55,7 +55,7 @@ const HeroVariant01 = defineType({
       initialValue: `Data to enrich your <br class="u__show-after-992" />online business`,
       group: "content",
     }),
-    defineField(generateHeadingTagField(`heading_tag`, `Heading Tag`)),
+    generateHeadingTagField(`heading_tag`, `Heading Tag`),
     defineField({
       name: "description",
       title: "Description",

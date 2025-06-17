@@ -3,6 +3,7 @@ import {
   generateHeadingTagField,
   scopedCss,
   generateBackgroundPatternField,
+  generateButtonField,
 } from "../defaultFields";
 const blockCategory = "hero";
 const HeroVariant04 = defineType({
@@ -44,7 +45,7 @@ const HeroVariant04 = defineType({
       initialValue: "Data to enrich your online business",
       group: "content",
     }),
-    defineField(generateHeadingTagField(`heading_tag`, `Heading Tag`)),
+    generateHeadingTagField(`heading_tag`, `Heading Tag`),
     defineField({
       name: "description",
       title: "Description",
@@ -54,31 +55,17 @@ const HeroVariant04 = defineType({
       rows: 4,
       group: "content",
     }),
-    defineField({
-      name: "button_title",
-      title: "Button Title",
-      type: "string",
-      initialValue: "Learn More",
-      group: "content",
+    ...generateButtonField({
+      name: "button",
+      titleLabel: "Button Title",
+      destinationLabel: "Button Destination",
+      themeLabel: `Button Theme`,
     }),
-    defineField({
-      name: "button_destination",
-      title: "Button Destination",
-      type: "string",
-      group: "content",
-    }),
-    defineField({
-      name: "button_theme",
-      title: "Button Theme",
-      type: "string",
-      initialValue: "primary",
-      group: "content",
-      options: {
-        list: [
-          { title: "Primary", value: "primary" },
-          { title: "Secondary", value: "secondary" },
-        ],
-      },
+    ...generateButtonField({
+      name: "button_two",
+      titleLabel: "Button Two Title",
+      destinationLabel: "Button Two Destination",
+      themeLabel: `Button Two Theme`,
     }),
     defineField({
       name: "image",

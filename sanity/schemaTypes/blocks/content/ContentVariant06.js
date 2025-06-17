@@ -36,7 +36,7 @@ const ContentVariant06 = defineType({
       initialValue: "Data to Enrich Your Online Business",
       group: "content",
     }),
-    defineField(generateHeadingTagField(`heading_tag`, `Heading Tag`)),
+    generateHeadingTagField(`heading_tag`, `Heading Tag`),
     defineField({
       name: "description",
       title: "Description",
