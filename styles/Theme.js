@@ -8,7 +8,7 @@ const Theme = css`
     --t-secondary-branding-color: #0d253a;
     --t-secondary-branding-hover-color: #081724;
     // Buttons
-    --t-button-padding: 0.7rem 1.6rem;
+    --t-button-padding: 0.575rem 1.7rem;
     --t-button-border-radius: 8px;
     // Typography
     --t-heading-color: #291643;

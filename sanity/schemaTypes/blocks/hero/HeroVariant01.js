@@ -83,11 +83,13 @@ const HeroVariant01 = defineType({
       name: "button",
       titleLabel: "Button Title",
       destinationLabel: "Button Destination",
+      themeLabel: `Button Theme`,
     }),
     ...generateButtonField({
       name: "button_two",
       titleLabel: "Button Two Title",
       destinationLabel: "Button Two Destination",
+      themeLabel: `Button Two Theme`,
     }),
 
     defineField({

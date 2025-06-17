@@ -3,15 +3,37 @@ import Link from "next/link";
 import React from "react";
 import { stegaClean } from "@sanity/client/stega";
 import styled from "styled-components";
+import { ArrowRight } from "lucide-react";
 
 const Component = styled.div`
   .c {
     &__button {
       padding: var(--t-button-padding);
       border-radius: var(--t-button-border-radius);
+      border: 2px solid;
       &__content {
         font-weight: var(--t-font-weight-button);
         font-family: var(--t-font-family-button);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+      }
+      &__icon {
+        display: flex;
+        align-items: center;
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+      &__arrow-icon {
+        display: flex;
+        align-items: center;
+        svg {
+          width: 16px;
+          height: 16px;
+        }
       }
       &__loading-icon {
         width: auto;
@@ -36,6 +58,11 @@ const Component = styled.div`
               justify-content: center;
             }
             &__arrow-icon {
+              svg path {
+                stroke: var(--t-cp-base-white);
+              }
+            }
+            &__icon {
               svg path {
                 stroke: var(--t-cp-base-white);
               }
@@ -75,15 +102,19 @@ const Component = styled.div`
       &--primary {
         background: var(--t-primary-branding-color);
         color: var(--t-cp-base-white);
+        border-color: var(--t-primary-branding-color);
         &:hover {
           background: var(--t-primary-branding-hover-color);
+          border-color: var(--t-primary-branding-hover-color);
         }
       }
       &--secondary {
         background: var(--t-secondary-branding-color);
         color: var(--t-cp-base-white);
+        border-color: var(--t-secondary-branding-color);
         &:hover {
           background: var(--t-secondary-branding-hover-color);
+          border-color: var(--t-secondary-branding-hover-color);
         }
       }
       &--ghost {
@@ -169,6 +200,10 @@ const Button = ({
   title,
   destination,
   target,
+  renderArrow = false,
+  icon,
+  iconPosition = "after",
+  iconProps = {},
   className,
   linkClassName,
   theme = `primary`,
@@ -179,6 +214,60 @@ const Button = ({
   isLoading,
   isDisabled,
 }) => {
+  // Render custom icon
+  const renderCustomIcon = () => {
+    if (!icon) return null;
+
+    const IconComponent = icon;
+    return (
+      <div className="c__button__icon">
+        <IconComponent strokeWidth={2.5} {...iconProps} />
+      </div>
+    );
+  };
+
+  const renderArrowIcon = () => {
+    if (!renderArrow) return null;
+
+    return (
+      <div className="c__button__arrow-icon">
+        <ArrowRight strokeWidth={2.5} />
+      </div>
+    );
+  };
+
+  // Render loading spinner
+  const renderLoadingIcon = () => (
+    <figure className="c__button__loading-icon">
+      <svg className="c__spinner" viewBox="0 0 50 50">
+        <circle
+          className="path"
+          cx="25"
+          cy="25"
+          r="20"
+          fill="none"
+          strokeWidth="5"
+        ></circle>
+      </svg>
+    </figure>
+  );
+  const renderButtonContent = () => {
+    const customIcon = renderCustomIcon();
+    const arrowIcon = renderArrowIcon();
+    const textContent = <span>{title}</span>;
+    const loadingIcon = renderLoadingIcon();
+
+    return (
+      <div className="c__button__content">
+        {iconPosition === "before" && customIcon}
+        {textContent}
+        {iconPosition === "after" && customIcon}
+        {arrowIcon}
+        {loadingIcon}
+      </div>
+    );
+  };
+
   return (
     <>
       {actionable ? (
@@ -192,21 +281,7 @@ const Button = ({
                   className ? className : ``
                 } c__button__size--${size} ${isLoading ? `c__button--loading` : ``} ${isDisabled ? `c__button--disabled` : ``}`}
               >
-                <div className="c__button__content">
-                  <span>{title}</span>
-                  <figure className="c__button__loading-icon">
-                    <svg className="c__spinner" viewBox="0 0 50 50">
-                      <circle
-                        className="path"
-                        cx="25"
-                        cy="25"
-                        r="20"
-                        fill="none"
-                        strokeWidth="5"
-                      ></circle>
-                    </svg>
-                  </figure>
-                </div>
+                {renderButtonContent()}
               </button>
             </Component>
           )}
@@ -226,9 +301,7 @@ const Button = ({
                     className ? className : ``
                   } c__button__size--${size}`}
                 >
-                  <div className="c__button__content">
-                    <span>{title}</span>
-                  </div>
+                  {renderButtonContent()}
                 </span>
               </Link>
             </Component>
