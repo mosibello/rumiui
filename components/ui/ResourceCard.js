@@ -6,6 +6,7 @@ import Heading from "./Heading";
 import Button from "./Button";
 import Link from "next/link";
 import { formatDate } from "@/lib/helpers";
+import Description from "./Description";
 
 const Component = styled.article`
   display: flex;
@@ -26,6 +27,38 @@ const Component = styled.article`
       }
     }
   }
+  &.c__resource-card {
+    &--bordered {
+      border: 2px solid var(--t-border-color);
+      border-radius: var(--t-global-card-border-radius);
+      overflow: hidden;
+      .c__resource-card {
+        &__image-wrapper {
+          img {
+            border-radius: 0;
+          }
+        }
+        &__bottom,
+        &__button-wrapper {
+          padding: 0 1.5rem;
+        }
+        &__bottom {
+          padding-top: 0.5rem;
+        }
+        &__button-wrapper {
+          padding-bottom: 1.5rem;
+        }
+      }
+    }
+  }
+  .col-lg-6 & .c__resource-card__image {
+    @media (min-width: 992px) {
+      height: 320px;
+    }
+    @media (min-width: 1200px) {
+      height: 400px;
+    }
+  }
 `;
 
 const ResourceCard = ({
@@ -34,15 +67,23 @@ const ResourceCard = ({
     alt: `Placeholder grayscale mountains`,
     blurDataURL: `https://cdn.sanity.io/images/nqj5p7gd/production/1f41c4bad180126545d88582d90cd3b3f1cc43ed-605x451.jpg`,
   },
+  heading = `Powerful Card Heading`,
+  headingTag = "h3",
+  headingSize = "h5",
+  description = `Massa nec scelerisque lacus dis vitae aenean montes platea ullamcorper condimentum quis magna purus tortor class a conubia dui nascetur id.`,
+  descriptionSize = "small",
+  buttonTitle = "Learn More",
   publishDate,
-  heading,
-  description,
-  buttonTitle = "Read more",
   buttonDestination,
+  cardTag = "article",
+  style = "default",
 }) => {
   return (
-    <Component className="c__resource-card relative">
-      <div className="c__resource-card__top mb-3">
+    <Component
+      as={cardTag}
+      className={`c__resource-card c__resource-card--${style} relative`}
+    >
+      <div className="c__resource-card__top mb-[1rem]">
         {image && (
           <div className="c__resource-card__image-wrapper">
             <Image
@@ -60,7 +101,7 @@ const ResourceCard = ({
       </div>
       <div className="c__resource-card__bottom">
         {publishDate && (
-          <div className="c__resource-card__date-wrapper mb-2">
+          <div className="c__resource-card__date-wrapper mb-[0.5rem]">
             <span className="u__small u__text-light">
               <time dateTime={`${publishDate}T00:00:00Z`}>
                 {formatDate(publishDate)}
@@ -70,24 +111,30 @@ const ResourceCard = ({
         )}
         {heading && (
           <div className="c__resource-card__heading-wrapper">
-            <Heading tag="h2" className="u__h5" disableParse>
-              <Link
-                href={buttonDestination || "#"}
-                className="u__full-cover-anchor-psuedo u__inherited-anchor u__text-decoration-underline-hover"
-              >
-                {heading}
-              </Link>
+            <Heading tag={headingTag} className={`u__${headingSize}`}>
+              {buttonDestination ? (
+                <Link
+                  href={buttonDestination || "#"}
+                  className="u__full-cover-anchor-psuedo u__inherited-anchor u__text-decoration-underline-hover"
+                >
+                  {heading}
+                </Link>
+              ) : (
+                heading
+              )}
             </Heading>
           </div>
         )}
         {description && (
           <div className="c__resource-card__description-wrapper">
-            <p className="u__small">{parse(description)}</p>
+            <Description className={`u__${descriptionSize}`}>
+              {description}
+            </Description>
           </div>
         )}
       </div>
       {buttonTitle && (
-        <div className="mt-auto">
+        <div className="c__resource-card__button-wrapper mt-auto">
           <Button
             theme="link"
             title={buttonTitle}
