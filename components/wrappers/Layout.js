@@ -6,7 +6,6 @@ import { getNavigationBySlug, getSiteSettings } from "@/sanity/utils/queries";
 const Layout = async ({ children }) => {
   const data = await getNavigationBySlug(`header`);
   const siteSettings = await getSiteSettings();
-  console.log(siteSettings);
   return (
     <>
       <HeaderVariant01 siteSettings={siteSettings} navigationSchema={data} />

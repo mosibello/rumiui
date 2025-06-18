@@ -83,9 +83,11 @@ const Component = styled.div`
         }
         &--large {
           font-size: 18px;
+          padding: var(--t-button-padding-large);
         }
         &--xlarge {
           font-size: 20px;
+          padding: var(--t-button-padding-xlarge);
         }
       }
       &__anchor-element {
@@ -125,6 +127,7 @@ const Component = styled.div`
           &:hover {
             background: var(--t-primary-branding-hover-color);
             color: var(--t-cp-base-white);
+            border-color: var(--t-primary-branding-hover-color);
           }
         }
         &-secondary {
@@ -134,6 +137,7 @@ const Component = styled.div`
           &:hover {
             background: var(--t-secondary-branding-hover-color);
             color: var(--t-cp-base-white);
+            border-color: var(--t-secondary-branding-hover-color);
           }
         }
       }

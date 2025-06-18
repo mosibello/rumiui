@@ -3,12 +3,14 @@ import { css } from "styled-components";
 const Theme = css`
   :root {
     // Theme colors
-    --t-primary-branding-color: #5a0df2;
-    --t-primary-branding-hover-color: #670bd1;
-    --t-secondary-branding-color: #0d253a;
-    --t-secondary-branding-hover-color: #081724;
+    --t-primary-branding-color: #ff914e;
+    --t-primary-branding-hover-color: rgb(211, 117, 59);
+    --t-secondary-branding-color: #025c66;
+    --t-secondary-branding-hover-color: rgb(1, 67, 74);
     // Buttons
     --t-button-padding: 0.575rem 1.7rem;
+    --t-button-padding-large: 0.75rem 1.7rem;
+    --t-button-padding-xlarge: 0.85rem 1.7rem;
     --t-button-border-radius: 8px;
     // Typography
     --t-heading-color: #291643;
@@ -104,11 +106,11 @@ const Theme = css`
     --t-box-shadow-3xl: 0px 32px 64px -12px rgba(16, 24, 40, 0.14);
     // Misc
     --t-border-color: #eee;
-    --t-light-background-color: #fcf9ff;
+    --t-light-background-color: #fffaf7;
     --t-light-text-color: #686868;
     --t-global-card-border-radius: 16px;
     --t-global-image-border-radius: 16px;
-    --t-pagination-button-color: #fcf9ff;
+    --t-pagination-button-color: var(--t-light-background-color);
     --t-pagination-button-hover-color: #f5f1f9;
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;

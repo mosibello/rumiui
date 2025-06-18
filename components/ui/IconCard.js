@@ -1,4 +1,5 @@
 "use client";
+import parse from "html-react-parser";
 import styled from "styled-components";
 import Button from "./Button";
 import Image from "next/image";
@@ -12,6 +13,7 @@ const Component = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: var(--t-global-card-border-radius);
+  background-color: var(--t-cp-base-white);
   .c__icon-card {
     &__wrapper {
       height: 100%;
@@ -19,11 +21,11 @@ const Component = styled.div`
       flex-direction: column;
     }
     &__icon-wrapper {
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       img,
       svg {
-        width: 42px;
-        height: 42px;
+        width: 45px;
+        height: 45px;
       }
       img {
         object-fit: contain;
@@ -46,7 +48,10 @@ const Component = styled.div`
 
 const IconCard = ({
   style = "shadow",
+  iconType = `svg`,
+  iconSvg,
   icon,
+  iconColor = `var(--t-primary-branding-color)`,
   heading,
   headingTag,
   description,
@@ -57,17 +62,18 @@ const IconCard = ({
   return (
     <Component className={`c__icon-card c__icon-card--${stegaClean(style)}`}>
       <div className="c__icon-card__wrapper">
-        {icon && icon.src && (
-          <div className="c__icon-card__icon-wrapper">
-            <figure className="m-0">
-              <Image
-                placeholder="blur"
-                blurDataURL={icon.blurDataURL}
-                src={icon.src}
-                alt={icon.alt ?? ""}
-                width={500}
-                height={500}
-              />
+        {icon && (icon.src || iconSvg) && (
+          <div className={`c__icon-card__icon-wrapper text-[${iconColor}]`}>
+            <figure className="m-0 inline">
+              {iconType === `image` && icon?.src && (
+                <Image
+                  src={icon.src}
+                  alt={icon.alt ?? ""}
+                  width={500}
+                  height={500}
+                />
+              )}
+              {iconType === `svg` && iconSvg && <>{parse(iconSvg)}</>}
             </figure>
           </div>
         )}
@@ -83,7 +89,7 @@ const IconCard = ({
         )}
         {description && (
           <div
-            className={`c__icon-card__description-wrapper ${buttonTitle ? `mt-2 mb-3` : ``}`}
+            className={`c__icon-card__description-wrapper ${buttonTitle ? `mt-[0.5rem] mb-[1rem]` : ``}`}
           >
             <Description className="c__icon-card__description mb-0">
               {description}
@@ -91,7 +97,7 @@ const IconCard = ({
           </div>
         )}
         {stegaClean(buttonTitle) && (
-          <div className="c__icon-card__button-wrapper mt-auto pt-4">
+          <div className="c__icon-card__button-wrapper mt-auto pt-[1.5rem]">
             <Button
               destination={buttonDestination}
               title={buttonTitle}

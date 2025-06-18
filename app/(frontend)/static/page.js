@@ -1,13 +1,14 @@
-// import ContentVariant06 from "@/components/blocks/content/ContentVariant06";
+import FeatureVariant05 from "@/components/blocks/feature/FeatureVariant05";
+import HeroVariant06 from "@/components/blocks/hero/HeroVariant06";
+import StatsVariant01 from "@/components/blocks/stats/StatsVariant01";
 import React from "react";
 
 const page = () => {
   return (
     <>
-      {/* <ContentVariant06 /> */}
-      <div>
-        <span>Page</span>
-      </div>
+      <HeroVariant06 />
+      <FeatureVariant05 />
+      <StatsVariant01 />
     </>
   );
 };

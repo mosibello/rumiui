@@ -1,6 +1,8 @@
 "use client";
 import styled from "styled-components";
 
+// ****DEPRECIATED***
+
 const Component = styled.div`
   height: 100%;
   .c__card-with-spotlight-heading {
