@@ -10,6 +10,7 @@ import localFont from "next/font/local";
 import { getSiteSettings } from "@/sanity/utils/queries";
 import urlFor from "@/lib/imageUrlBuilder";
 import { Outfit } from "next/font/google";
+import HeadingTagsDisplay from "@/components/wrappers/HeadingTagsDisplay";
 
 const globalFont = Outfit({
   subsets: ["latin"],
@@ -47,6 +48,7 @@ export default async function RootLayout({ children }) {
           <Layout>{children}</Layout>
         </StyledComponentsRegistry>
         <VisualEditingControls />
+        <HeadingTagsDisplay />
       </body>
     </html>
   );

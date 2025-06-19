@@ -47,7 +47,6 @@ const Wrapper = styled.div`
 `;
 
 const HeroVariant02 = ({ data }) => {
-  const patternType = data?.background_pattern_type ?? `dots`;
   return (
     <Bounded
       id={data._key}

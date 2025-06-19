@@ -108,6 +108,13 @@ const Page = {
                 .filter((elem) => elem._menuCategory === "cta")
                 ?.map((elem) => elem.name),
             },
+            {
+              name: "partner",
+              title: "Partners",
+              of: pageBuilderBlocks
+                .filter((elem) => elem._menuCategory === "partner")
+                ?.map((elem) => elem.name),
+            },
           ],
           views: [
             {

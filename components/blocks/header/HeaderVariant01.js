@@ -170,8 +170,6 @@ const HeaderVariant01 = ({ navigationSchema, siteSettings }) => {
     };
   }, []);
 
-  console.log(siteSettings);
-
   return (
     <>
       <header className="b__header__variant01 b__header__variant01--sticky">
@@ -189,10 +187,11 @@ const HeaderVariant01 = ({ navigationSchema, siteSettings }) => {
             >
               <div className="b__header__variant01__logo-wrapper u__cursor-pointer">
                 {siteSettings?.logo ? (
-                  <div className="relative w-[200px] h-[40px]">
+                  <div className="relative">
                     <Image
-                      className="b__header__variant01__logo"
-                      fill={true}
+                      className="b__header__variant01__logo w-[100%] mw-w-[200px] h-[50px] u__object-fit-contain"
+                      width={500}
+                      height={500}
                       src={urlFor(siteSettings.logo).url()}
                       alt={siteSettings.logo.alt ?? ""}
                       sizes="100%"

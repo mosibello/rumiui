@@ -4,7 +4,7 @@ const Theme = css`
   :root {
     // Theme colors
     --t-primary-branding-color: #ff914e;
-    --t-primary-branding-hover-color: rgb(211, 117, 59);
+    --t-primary-branding-hover-color: rgb(255, 129, 51);
     --t-secondary-branding-color: #025c66;
     --t-secondary-branding-hover-color: rgb(1, 67, 74);
     // Buttons

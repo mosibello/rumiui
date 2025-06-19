@@ -136,7 +136,7 @@ const ContentVariant08 = ({ data = {} }) => {
                     key={index}
                     className={`col-md-6 ${data.card_columns ? cardColumns[data.card_columns] : `col-lg-4`}`}
                   >
-                    <ResourceCard />
+                    <ResourceCard defaultProps />
                   </div>
                 );
               })}

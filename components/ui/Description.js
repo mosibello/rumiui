@@ -8,14 +8,12 @@ const Description = ({ children, className = "u__p", disableParse }) => {
       return children;
     }
 
-    // Only parse if children is a string
     if (typeof children === "string") {
       return children.includes("<span")
         ? parse(stegaClean(children))
         : parse(children);
     }
 
-    // Return children as-is if not a string (React elements, numbers, etc.)
     return children;
   };
 

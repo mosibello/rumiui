@@ -125,9 +125,9 @@ const Component = styled.div`
           border: 2px solid var(--t-primary-branding-color);
           color: var(--t-primary-branding-color);
           &:hover {
-            background: var(--t-primary-branding-hover-color);
+            background: var(--t-primary-branding-color);
             color: var(--t-cp-base-white);
-            border-color: var(--t-primary-branding-hover-color);
+            border-color: var(--t-primary-branding-color);
           }
         }
         &-secondary {
@@ -135,9 +135,9 @@ const Component = styled.div`
           border: 2px solid var(--t-secondary-branding-color);
           color: var(--t-secondary-branding-color);
           &:hover {
-            background: var(--t-secondary-branding-hover-color);
+            background: var(--t-secondary-branding-color);
             color: var(--t-cp-base-white);
-            border-color: var(--t-secondary-branding-hover-color);
+            border-color: var(--t-secondary-branding-color);
           }
         }
       }

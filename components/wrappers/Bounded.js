@@ -2,6 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import parse from "html-react-parser";
+import { cn } from "@/lib/utils";
 
 const Section = styled.section`
   ${(props) =>
@@ -22,7 +23,7 @@ const Bounded = ({
       id={id ? `bounded-section-id-${id}` : null}
       $scopedCss={scopedCss ? scopedCss?.code : null}
       data-block-type={type && parse(type)}
-      className={className}
+      className={cn(className)}
       {...restProps}
     >
       {children}

@@ -43,10 +43,10 @@ const TestimonialVariant01 = ({ data = {} }) => {
           <blockquote className="text-center">
             <div className="b__testimonial__variant01__logo-wrapper mb-[2rem]">
               <Image
-                className="b__testimonial__variant01__logo mx-auto"
+                className="b__testimonial__variant01__logo mx-auto w-auto h-auto"
                 sizes="100vw"
                 width={500}
-                height={300}
+                height={500}
                 src={`https://cdn.sanity.io/images/7wjp505t/production/557ef7e282bccc41055f6c13e8978d5baa76e576-239x43.svg`}
                 alt={``}
               />
@@ -63,10 +63,10 @@ const TestimonialVariant01 = ({ data = {} }) => {
             </div>
             <div className="b__testimonial__variant01__avatar-wrapper mb-[1rem]">
               <Image
-                className="b__testimonial__variant01__avatar mx-auto"
+                className="b__testimonial__variant01__avatar mx-auto w-auto h-auto"
                 sizes="100vw"
                 width={500}
-                height={300}
+                height={500}
                 src={`https://cdn.sanity.io/images/nqj5p7gd/production/1f41c4bad180126545d88582d90cd3b3f1cc43ed-605x451.jpg`}
                 alt={""}
               />
