@@ -25,6 +25,9 @@ const cardColumns = {
 };
 
 const FeatureVariant05 = ({ data = {} }) => {
+  const dataCardColumns = stegaClean(data.cardColumns);
+  const columnClassName = `col-md-6 ${dataCardColumns ? cardColumns[dataCardColumns] : `col-lg-4`}`;
+
   return (
     <Bounded
       id={data._key}
@@ -97,10 +100,7 @@ const FeatureVariant05 = ({ data = {} }) => {
                   alt: image ? image.alt : null,
                 };
                 return (
-                  <div
-                    key={index}
-                    className={`col-md-6 ${data.card_columns ? cardColumns[data.card_columns] : `col-lg-4`}`}
-                  >
+                  <div key={index} className={columnClassName}>
                     <ConditionalBlurFade
                       enabled={data.enable_animations}
                       delay={0.3 + index * 0.1}

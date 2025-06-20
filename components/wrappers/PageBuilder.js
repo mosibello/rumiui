@@ -6,6 +6,7 @@ import * as AllContents from "../blocks/content";
 import * as AllFaqs from "../blocks/faq";
 import * as AllCtas from "../blocks/cta";
 import * as AllPartners from "../blocks/partner";
+import * as AllStats from "../blocks/stats";
 
 const categories = {
   hero: AllHeroes,
@@ -14,6 +15,7 @@ const categories = {
   faq: AllFaqs,
   cta: AllCtas,
   partner: AllPartners,
+  stats: AllStats,
 };
 
 const BlockNotFound = ({ _type }) => {

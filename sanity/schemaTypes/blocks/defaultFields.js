@@ -172,6 +172,25 @@ export const generateIconCardStyleField = ({
     },
   });
 
+export const generateResourceCardStyleField = ({
+  name,
+  title,
+  group = "style",
+} = {}) =>
+  defineField({
+    name,
+    title,
+    type: "string",
+    initialValue: "",
+    group,
+    options: {
+      list: [
+        { title: "Default", value: "default" },
+        { title: "Bordered", value: "bordered" },
+      ],
+    },
+  });
+
 export const generateCardColumnsField = ({
   name,
   title,

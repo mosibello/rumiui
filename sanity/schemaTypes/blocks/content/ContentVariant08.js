@@ -2,15 +2,17 @@ import { defineField, defineType } from "sanity";
 import {
   scopedCss,
   generateButtonField,
-  generateIconCardStyleField,
+  generateResourceCardStyleField,
   generateCardColumnsField,
   generateHeadingTagField,
   generateBackgroundPatternField,
 } from "../defaultFields";
-const blockCategory = "feature";
-const FeatureVariant05 = defineType({
-  name: "FeatureVariant05",
-  title: "Feature Variant 05",
+
+const blockLabel = `Content Variant 08`;
+const blockCategory = "content";
+const ContentVariant08 = defineType({
+  name: "ContentVariant08",
+  title: blockLabel,
   type: "object",
   _menuCategory: blockCategory,
   groups: [
@@ -37,7 +39,7 @@ const FeatureVariant05 = defineType({
       name: "label",
       title: "Label",
       type: "string",
-      initialValue: "Process",
+      initialValue: "Empower",
       group: "content",
     }),
     generateHeadingTagField({
@@ -48,7 +50,7 @@ const FeatureVariant05 = defineType({
       name: "heading",
       title: "Heading",
       type: "string",
-      initialValue: `Our Proven Consulting Process <br class="u__show-after-992" />Explained`,
+      initialValue: "End to End Digital Marketing",
       group: "content",
     }),
     generateHeadingTagField({
@@ -87,8 +89,8 @@ const FeatureVariant05 = defineType({
           .fill(0)
           .map((_, i) => ({
             _type: "repeater_item",
-            heading: `Card Heading`,
-            description: `Gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet`,
+            heading: `Powerful Card Heading`,
+            description: `Massa nec scelerisque lacus dis vitae aenean montes platea ullamcorper condimentum quis magna purus tortor class a conubia dui nascetur id.`,
             button_title: "Learn More",
           })),
       of: [
@@ -98,36 +100,9 @@ const FeatureVariant05 = defineType({
           title: "Repeater Item",
           fields: [
             defineField({
-              name: "icon_type",
-              title: "Icon Type",
-              type: "string",
-              initialValue: "svg",
-              options: {
-                list: [
-                  { title: "SVG", value: "svg" },
-                  { title: "Image", value: "image" },
-                ],
-              },
-            }),
-            defineField({
-              name: "iconSvg",
-              title: "Icon SVG",
-              type: "text",
-              rows: 3,
-              hidden: ({ parent }) => parent?.[`icon_type`] !== "svg",
-              initialValue: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff914e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notepad-text-icon lucide-notepad-text"><path d="M8 2v4"/><path d="M12 2v4"/><path d="M16 2v4"/><rect width="16" height="18" x="4" y="4" rx="2"/><path d="M8 10h6"/><path d="M8 14h8"/><path d="M8 18h5"/></svg>`,
-            }),
-            defineField({
-              name: "iconColor",
-              title: "Icon Color",
-              type: "string",
-              hidden: ({ parent }) => parent?.[`icon_type`] !== "svg",
-            }),
-            defineField({
               name: "image",
-              title: "Icon",
+              title: "Image",
               type: "image",
-              hidden: ({ parent }) => parent?.[`icon_type`] !== "image",
               options: { hotspot: true },
               fields: [
                 {
@@ -141,14 +116,14 @@ const FeatureVariant05 = defineType({
               name: "heading",
               title: "Heading",
               type: "string",
-              initialValue: "Card Heading",
+              initialValue: "Powerful Card Heading",
             }),
             defineField({
               name: "description",
               title: "Description",
               type: "text",
               initialValue:
-                "Gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet",
+                "Massa nec scelerisque lacus dis vitae aenean montes platea ullamcorper condimentum quis magna purus tortor class a conubia dui nascetur id.",
               rows: 2,
             }),
             ...generateButtonField({
@@ -167,7 +142,7 @@ const FeatureVariant05 = defineType({
       name: `card_heading_tag`,
       title: `Card Heading Tag`,
     }),
-    generateIconCardStyleField({
+    generateResourceCardStyleField({
       name: `card_style`,
       title: `Card Style`,
     }),
@@ -192,10 +167,10 @@ const FeatureVariant05 = defineType({
       const { heading } = selection;
       return {
         title: heading || "Heading needs to be set",
-        subtitle: "Feature Variant 05",
+        subtitle: blockLabel,
       };
     },
   },
 });
 
-export default FeatureVariant05;
+export default ContentVariant08;

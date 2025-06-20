@@ -1,12 +1,12 @@
 "use client";
 import styled from "styled-components";
-import parse from "html-react-parser";
 import Image from "next/image";
 import Heading from "./Heading";
 import Button from "./Button";
 import Link from "next/link";
 import { formatDate } from "@/lib/helpers";
 import Description from "./Description";
+import { stegaClean } from "@sanity/client/stega";
 
 const Component = styled.article`
   display: flex;
@@ -74,11 +74,13 @@ const ResourceCard = ({
   description = defaultProps &&
     `Massa nec scelerisque lacus dis vitae aenean montes platea ullamcorper condimentum quis magna purus tortor class a conubia dui nascetur id.`,
   descriptionSize = "small",
-  buttonTitle = defaultProps && "Learn More",
   publishDate,
-  buttonDestination,
   cardTag = "article",
   style = "default",
+  buttonTitle = defaultProps && "Learn More",
+  buttonTarget,
+  buttonDestination,
+  buttonTheme = "link",
 }) => {
   return (
     <Component
@@ -91,8 +93,8 @@ const ResourceCard = ({
             <Image
               className="c__resource-card__image"
               sizes="100vw"
-              width={500}
-              height={300}
+              width={800}
+              height={800}
               placeholder={`blur`}
               blurDataURL={image.blurDataURL}
               src={image.src}
@@ -135,12 +137,13 @@ const ResourceCard = ({
           </div>
         )}
       </div>
-      {buttonTitle && (
+      {stegaClean(buttonTitle) && (
         <div className="c__resource-card__button-wrapper mt-auto">
           <Button
-            theme="link"
-            title={buttonTitle}
             destination={buttonDestination}
+            title={buttonTitle}
+            theme={buttonTheme}
+            target={buttonTarget}
           />
         </div>
       )}

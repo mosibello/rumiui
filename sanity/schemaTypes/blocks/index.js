@@ -4,6 +4,7 @@ import * as AllContents from "./content";
 import * as AllFaqs from "./faq";
 import * as AllCtas from "./cta";
 import * as AllPartners from "./partner";
+import * as AllStats from "./stats";
 
 const heroBlocks = [...Object.values(AllHeroes)];
 const featureBlocks = [...Object.values(AllFeatures)];
@@ -11,6 +12,7 @@ const contentBlocks = [...Object.values(AllContents)];
 const faqBlocks = [...Object.values(AllFaqs)];
 const ctaBlocks = [...Object.values(AllCtas)];
 const partnerBlocks = [...Object.values(AllPartners)];
+const statsBlocks = [...Object.values(AllStats)];
 const pageBuilderBlocks = [
   ...heroBlocks,
   ...featureBlocks,
@@ -18,6 +20,7 @@ const pageBuilderBlocks = [
   ...faqBlocks,
   ...ctaBlocks,
   ...partnerBlocks,
+  ...statsBlocks,
 ];
 
 export default pageBuilderBlocks;
