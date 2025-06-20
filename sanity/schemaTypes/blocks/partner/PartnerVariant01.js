@@ -40,7 +40,10 @@ const PartnerVariant01 = defineType({
       initialValue: "Brands We Work With",
       group: "content",
     }),
-    generateHeadingTagField(`heading_tag`, `Heading Tag`),
+    generateHeadingTagField({
+      name: `heading_tag`,
+      title: `Heading Tag`,
+    }),
     defineField({
       name: "description",
       title: "Description",

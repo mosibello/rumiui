@@ -80,10 +80,27 @@ const HeroVariant03 = defineType({
       initialValue: "Page Heading",
       group: "content",
     }),
-    generateHeadingTagField(`heading_tag`, `Heading Tag`),
-    generateHeadingSizeField(`heading_size`, `Heading Size`),
-    generateHeadingTagField(`description_tag`, `Description Tag`),
-    generateHeadingSizeField(`description_size`, `Description Size`),
+
+    generateHeadingTagField({
+      name: `heading_tag`,
+      title: `Heading Tag`,
+    }),
+
+    generateHeadingSizeField({
+      name: `heading_size`,
+      title: `Heading Size`,
+    }),
+
+    generateHeadingTagField({
+      name: `description_tag`,
+      title: `Description Tag`,
+    }),
+
+    generateHeadingSizeField({
+      name: `description_size`,
+      title: `Description Size`,
+    }),
+
     defineField({
       name: "description",
       title: "Description",

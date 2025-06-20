@@ -3,6 +3,7 @@ import {
   scopedCss,
   generateBackgroundPatternField,
   generateButtonField,
+  generateHeadingTagField,
 } from "../defaultFields";
 const blockCategory = "hero";
 const HeroVariant02 = defineType({
@@ -57,6 +58,10 @@ const HeroVariant02 = defineType({
       type: "string",
       initialValue: "Powerful Section Heading to Insure Readability",
       group: "content",
+    }),
+    generateHeadingTagField({
+      name: `heading_tag`,
+      title: `Heading Tag`,
     }),
     defineField({
       name: "content",

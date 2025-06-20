@@ -55,7 +55,10 @@ const HeroVariant01 = defineType({
       initialValue: `Data to enrich your <br class="u__show-after-992" />online business`,
       group: "content",
     }),
-    generateHeadingTagField(`heading_tag`, `Heading Tag`),
+    generateHeadingTagField({
+      name: `heading_tag`,
+      title: `Heading Tag`,
+    }),
     defineField({
       name: "description",
       title: "Description",
@@ -65,12 +68,12 @@ const HeroVariant01 = defineType({
       rows: 4,
       group: "content",
     }),
-    defineField(
-      generateHeadingTagField(
-        `description_heading_tag`,
-        `Description Heading Tag`
-      )
-    ),
+
+    generateHeadingTagField({
+      name: `description_heading_tag`,
+      title: `Description Heading Tag`,
+    }),
+
     defineField({
       name: "content",
       title: "Content",

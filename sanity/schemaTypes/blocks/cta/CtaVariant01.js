@@ -36,7 +36,10 @@ const CtaVariant01 = defineType({
       initialValue: "Data to Enrich Your Online Business",
       group: "content",
     }),
-    generateHeadingTagField(`heading_tag`, `Heading Tag`),
+    generateHeadingTagField({
+      name: `heading_tag`,
+      title: `Heading Tag`,
+    }),
     defineField({
       name: "description",
       title: "Description",
@@ -45,7 +48,10 @@ const CtaVariant01 = defineType({
       rows: 4,
       group: "content",
     }),
-    generateHeadingTagField(`description_tag`, `Description Tag`),
+    generateHeadingTagField({
+      name: `description_tag`,
+      title: `Description Tag`,
+    }),
     defineField({
       name: "button_title",
       title: "Button Title",

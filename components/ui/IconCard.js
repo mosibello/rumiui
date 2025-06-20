@@ -57,6 +57,7 @@ const IconCard = ({
   description,
   buttonTitle,
   buttonDestination,
+  buttonTarget,
   buttonTheme = "link",
 }) => {
   return (
@@ -102,6 +103,7 @@ const IconCard = ({
               destination={buttonDestination}
               title={buttonTitle}
               theme={buttonTheme}
+              target={buttonTarget}
             />
           </div>
         )}

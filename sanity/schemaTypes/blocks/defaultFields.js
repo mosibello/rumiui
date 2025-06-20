@@ -13,12 +13,16 @@ export const scopedCss = {
   group: "style",
 };
 
-export const generateHeadingTagField = (name, title) => {
-  return defineField({
+export const generateHeadingTagField = ({
+  name,
+  title,
+  group = "content",
+} = {}) =>
+  defineField({
     name,
     title,
     type: "string",
-    group: "content",
+    group,
     options: {
       list: [
         { title: "H1", value: "h1" },
@@ -32,14 +36,17 @@ export const generateHeadingTagField = (name, title) => {
       ],
     },
   });
-};
 
-export const generateHeadingSizeField = (name, title) => {
-  return defineField({
+export const generateHeadingSizeField = ({
+  name,
+  title,
+  group = "content",
+} = {}) =>
+  defineField({
     name,
     title,
     type: "string",
-    group: "content",
+    group,
     options: {
       list: [
         { title: "D1", value: "d1" },
@@ -55,7 +62,6 @@ export const generateHeadingSizeField = (name, title) => {
       ],
     },
   });
-};
 
 export const generateLinkField = (name, title, depth = 2, maxDepth = 4) => {
   return {
@@ -146,6 +152,45 @@ export const generateBackgroundPatternField = ({
     },
   }),
 ];
+export const generateIconCardStyleField = ({
+  name,
+  title,
+  group = "style",
+} = {}) =>
+  defineField({
+    name,
+    title,
+    type: "string",
+    initialValue: "",
+    group,
+    options: {
+      list: [
+        { title: "Solid", value: "solid" },
+        { title: "Outlined", value: "outlined" },
+        { title: "Shadow", value: "shadow" },
+      ],
+    },
+  });
+
+export const generateCardColumnsField = ({
+  name,
+  title,
+  group = "style",
+} = {}) =>
+  defineField({
+    name,
+    title,
+    type: "string",
+    initialValue: "",
+    group,
+    options: {
+      list: [
+        { title: "2", value: "2" },
+        { title: "3", value: "3" },
+        { title: "4", value: "4" },
+      ],
+    },
+  });
 
 export const generateButtonField = ({
   name,
@@ -155,47 +200,56 @@ export const generateButtonField = ({
   themeLabel = "Button Theme",
   group = "style",
   initialTitle = "Learn More",
-} = {}) => [
-  defineField({
-    name: `${name}_title`,
-    title: titleLabel,
-    type: "string",
-    initialValue: initialTitle,
-    group,
-  }),
-  defineField({
-    name: `${name}_destination`,
-    title: destinationLabel,
-    type: "string",
-    group,
-  }),
-  defineField({
-    name: `${name}_open_in_new_tab`,
-    title: openInNewTabLabel,
-    type: "boolean",
-    initialValue: false,
-    group,
-    hidden: ({ parent }) => !parent?.[`${name}_destination`],
-  }),
-  defineField({
-    name: `${name}_theme`,
-    title: themeLabel,
-    type: "string",
-    initialValue: "primary",
-    group,
-    hidden: ({ parent }) => !parent?.[`${name}_title`],
-    options: {
-      list: [
-        { title: "Primary", value: "primary" },
-        { title: "Secondary", value: "secondary" },
-        { title: "Inverted", value: "inverted" },
-        { title: "Link", value: "link" },
-        { title: "Ghost Primary", value: "ghost-primary" },
-        { title: "Ghost Secondary", value: "ghost-secondary" },
-      ],
-    },
-  }),
-];
+  includeTheme = true,
+} = {}) => {
+  const fields = [
+    defineField({
+      name: `${name}_title`,
+      title: titleLabel,
+      type: "string",
+      initialValue: initialTitle,
+      group,
+    }),
+    defineField({
+      name: `${name}_destination`,
+      title: destinationLabel,
+      type: "string",
+      group,
+    }),
+    defineField({
+      name: `${name}_open_in_new_tab`,
+      title: openInNewTabLabel,
+      type: "boolean",
+      initialValue: false,
+      group,
+      hidden: ({ parent }) => !parent?.[`${name}_destination`],
+    }),
+  ];
+  if (includeTheme) {
+    fields.push(
+      defineField({
+        name: `${name}_theme`,
+        title: themeLabel,
+        type: "string",
+        initialValue: "primary",
+        group,
+        hidden: ({ parent }) => !parent?.[`${name}_title`],
+        options: {
+          list: [
+            { title: "Primary", value: "primary" },
+            { title: "Secondary", value: "secondary" },
+            { title: "Inverted", value: "inverted" },
+            { title: "Link", value: "link" },
+            { title: "Ghost Primary", value: "ghost-primary" },
+            { title: "Ghost Secondary", value: "ghost-secondary" },
+          ],
+        },
+      })
+    );
+  }
+
+  return fields;
+};
 
 export const generateRichtextField = (options = {}) => {
   const { name = "content", title = "Content", initialValue = null } = options;
@@ -263,7 +317,6 @@ export const generateRichtextField = (options = {}) => {
     group: "content",
   };
 
-  // Add initialValue if provided or use lorem ipsum as default
   if (initialValue !== null) {
     field.initialValue = initialValue;
   } else {

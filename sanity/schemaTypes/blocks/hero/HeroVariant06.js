@@ -2,10 +2,8 @@ import { defineField, defineType } from "sanity";
 import {
   scopedCss,
   generateHeadingTagField,
-  generateHeadingSizeField,
   generateBackgroundPatternField,
   generateButtonField,
-  generateRichtextField,
 } from "../defaultFields";
 const blockCategory = "hero";
 const HeroVariant06 = defineType({
@@ -47,7 +45,10 @@ const HeroVariant06 = defineType({
       initialValue: "Data to Enrich Your Online Business",
       group: "content",
     }),
-    generateHeadingTagField(`heading_tag`, `Heading Tag`),
+    generateHeadingTagField({
+      name: `heading_tag`,
+      title: `Heading Tag`,
+    }),
     defineField({
       name: "content",
       title: "Content",
