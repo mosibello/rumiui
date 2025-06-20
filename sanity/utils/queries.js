@@ -11,15 +11,36 @@ export async function getPageBySlug(slug) {
       repeater[] {
         ...,
         image {
-          ... {
-            asset->
-          }
+          asset->,
+          hotspot,
+          crop
         },
+        logo {
+          asset->,
+          hotspot,
+          crop
+        },
+        avatar {
+          asset->,
+          hotspot,
+          crop
+        },
+        // ... other image fields
       },
       image {
-        ... {
-          asset->
-        }
+        asset->,
+        hotspot,
+        crop
+      },
+      logo {
+        asset->,
+        hotspot,
+        crop
+      },
+      avatar {
+        asset->,
+        hotspot,
+        crop
       },
       "form": form->
     }
@@ -37,13 +58,15 @@ export async function getPostBySlug(slug) {
         ...,
         _type == "image" => {
           ...,
-          asset->
+          asset->,
+          hotspot,
+          crop
         }
       },
       featured_image {
-        ... {
-          asset->
-        }
+        asset->,
+        hotspot,
+        crop
       },
       "primary_category": categories[0]->
     }`,
@@ -57,9 +80,9 @@ export async function getPosts(start, end) {
     groq`*[_type == "post" && ${QUERY_omitDrafts}] | order(publish_date desc)[${start}...${end}] {
       ...,
       featured_image {
-        ... {
-          asset->
-        }
+        asset->,
+        hotspot,
+        crop
       },
       "excerpt": array::join(string::split((pt::text(content)), "")[0..100], "") + "..."
     }`,
@@ -73,9 +96,9 @@ export async function getPostsByCategory(start, end, categorySlug) {
     groq`*[_type == "post" && ${QUERY_omitDrafts} && $categorySlug in categories[]->slug.current] | order(publish_date desc)[${start}...${end}] {
       ...,
       featured_image {
-        ... {
-          asset->
-        }
+        asset->,
+        hotspot,
+        crop
       },
       "excerpt": array::join(string::split((pt::text(content)), "")[0..100], "") + "..."
     }`,
@@ -91,9 +114,9 @@ export async function getCategoryBySlug(categorySlug) {
       meta_title,
       meta_description,
       featured_image {
-        ... {
-          asset->
-        }
+        asset->,
+        hotspot,
+        crop
       }
     }`,
     { categorySlug },

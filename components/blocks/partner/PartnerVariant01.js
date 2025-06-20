@@ -7,6 +7,7 @@ import Description from "@/components/ui/Description";
 import { Marquee } from "@/components/magicui/marquee";
 import PartnerLogo from "@/components/ui/PartnerLogo";
 import { stegaClean } from "@sanity/client/stega";
+import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
 
 const Wrapper = styled.div``;
 
@@ -22,19 +23,25 @@ const PartnerVariant01 = ({ data = {} }) => {
         <div className="container relative u__z-index-1">
           <div className="text-center">
             {data.heading && (
-              <div className="c__heading-wrapper mb-[1rem]">
-                <Heading
-                  tag={data?.heading_tag || "h2"}
-                  className={`u__h3 mb-0`}
-                >
-                  {data.heading}
-                </Heading>
-              </div>
+              <ConditionalBlurFade enabled={data.enable_animations} delay={0}>
+                <div className="c__heading-wrapper mb-[1rem]">
+                  <Heading
+                    tag={data?.heading_tag || "h2"}
+                    className={`u__h3 mb-0`}
+                  >
+                    {data.heading}
+                  </Heading>
+                </div>
+              </ConditionalBlurFade>
             )}
             {stegaClean(data.description) && (
-              <div className="c__description-wrapper">
-                <Description className="u__h6">{data.description}</Description>
-              </div>
+              <ConditionalBlurFade enabled={data.enable_animations} delay={0.1}>
+                <div className="c__description-wrapper">
+                  <Description className="u__h6">
+                    {data.description}
+                  </Description>
+                </div>
+              </ConditionalBlurFade>
             )}
           </div>
         </div>
@@ -47,11 +54,16 @@ const PartnerVariant01 = ({ data = {} }) => {
                   alt: elem.image ? elem.image.alt : null,
                 };
                 return (
-                  <PartnerLogo
-                    key={index}
-                    image={imageObj}
-                    className={`c__partner-logo--index-${index}`}
-                  />
+                  <ConditionalBlurFade
+                    enabled={data.enable_animations}
+                    delay={0.2 + index * 0.1}
+                  >
+                    <PartnerLogo
+                      key={index}
+                      image={imageObj}
+                      className={`c__partner-logo--index-${index}`}
+                    />
+                  </ConditionalBlurFade>
                 );
               })}
             </Marquee>

@@ -90,6 +90,13 @@ const PartnerVariant01 = defineType({
         },
       ],
     }),
+    defineField({
+      name: "enable_animations",
+      title: "Enable Animations",
+      type: "boolean",
+      initialValue: () => false,
+      group: "style",
+    }),
   ],
   preview: {
     select: {
