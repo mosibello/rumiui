@@ -47,7 +47,7 @@ const PartnerVariant01 = ({ data = {} }) => {
         </div>
         {data?.repeater && data?.repeater?.length > 0 && (
           <div className="container relative u__z-index-1 mt-[2.5rem]">
-            <Marquee className="[--duration:60s]">
+            <Marquee className="[--duration:30s] md:[--duration:60s]">
               {data.repeater.map((elem, index) => {
                 const imageObj = {
                   src: elem.image ? urlFor(elem.image).url() : null,

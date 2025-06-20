@@ -189,7 +189,7 @@ const HeaderVariant01 = ({ navigationSchema, siteSettings }) => {
                 {siteSettings?.logo ? (
                   <div className="relative">
                     <Image
-                      className="b__header__variant01__logo w-[100%] mw-w-[200px] h-[50px] u__object-fit-contain"
+                      className="b__header__variant01__logo w-[auto] mw-w-[200px] h-[50px] u__object-fit-contain"
                       width={500}
                       height={500}
                       src={urlFor(siteSettings.logo).url()}
