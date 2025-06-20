@@ -55,11 +55,11 @@ const PartnerVariant01 = ({ data = {} }) => {
                 };
                 return (
                   <ConditionalBlurFade
+                    key={index}
                     enabled={data.enable_animations}
                     delay={0.2 + index * 0.1}
                   >
                     <PartnerLogo
-                      key={index}
                       image={imageObj}
                       className={`c__partner-logo--index-${index}`}
                     />
