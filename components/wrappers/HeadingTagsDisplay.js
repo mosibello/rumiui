@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function HeadingTagsDisplay() {
+function HeadingTagsDisplayInner() {
   const searchParams = useSearchParams();
   const showHeadingTags = searchParams.get("show_heading_tags") === "true";
 
@@ -58,4 +58,12 @@ export default function HeadingTagsDisplay() {
   }, [showHeadingTags]);
 
   return null;
+}
+
+export default function HeadingTagsDisplay() {
+  return (
+    <Suspense fallback={null}>
+      <HeadingTagsDisplayInner />
+    </Suspense>
+  );
 }
