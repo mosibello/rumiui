@@ -1,5 +1,13 @@
 import { defineField, defineType } from "sanity";
-import { scopedCss } from "../defaultFields";
+import {
+  scopedCss,
+  generateButtonField,
+  generateIconCardStyleField,
+  generateCardColumnsField,
+  generateHeadingTagField,
+  generateBackgroundPatternField,
+  generateRichtextField,
+} from "../defaultFields";
 const blockCategory = "feature";
 const FeatureVariant01 = defineType({
   name: "FeatureVariant01",
@@ -26,20 +34,7 @@ const FeatureVariant01 = defineType({
       readOnly: true,
       hidden: true,
     }),
-    defineField({
-      name: "align_items_center",
-      title: "Align Items Center",
-      type: "boolean",
-      initialValue: () => false,
-      group: "style",
-    }),
-    defineField({
-      name: "invert_order",
-      title: "Invert Order",
-      type: "boolean",
-      initialValue: () => false,
-      group: "style",
-    }),
+
     defineField({
       name: "label",
       title: "Label",
@@ -47,51 +42,39 @@ const FeatureVariant01 = defineType({
       initialValue: "Section Label",
       group: "content",
     }),
+    generateHeadingTagField({
+      name: `label_heading_tag`,
+      title: `Label Heading Tag`,
+    }),
+
     defineField({
       name: "heading",
       title: "Heading",
       type: "string",
-      initialValue: "Powerful Section Heading to Insure Readability",
+      initialValue: `Powerful Section Heading to Insure Readability`,
       group: "content",
     }),
-    defineField({
+    generateHeadingTagField({
+      name: `heading_tag`,
+      title: `Heading Tag`,
+    }),
+
+    generateRichtextField({
       name: "content",
       title: "Content",
-      type: "array",
-      initialValue:
-        "Gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet",
-      of: [
-        {
-          type: "block",
-        },
-        {
-          type: "image",
-          fields: [
-            {
-              type: "text",
-              name: "alt",
-              title: "Alternative text",
-              options: {
-                isHighlighted: true,
-              },
-            },
-          ],
-        },
-      ],
-      group: "content",
     }),
-    defineField({
-      name: "button_title",
-      title: "Button Title",
-      type: "string",
-      initialValue: "Learn More",
-      group: "content",
+
+    ...generateButtonField({
+      name: "button",
+      titleLabel: "Button Title",
+      destinationLabel: "Button Destination",
+      themeLabel: `Button Theme`,
     }),
-    defineField({
-      name: "button_destination",
-      title: "Button Destination",
-      type: "string",
-      group: "content",
+    ...generateButtonField({
+      name: "button_two",
+      titleLabel: "Button Two Title",
+      destinationLabel: "Button Two Destination",
+      themeLabel: `Button Two Theme`,
     }),
     defineField({
       name: "image",
@@ -107,6 +90,28 @@ const FeatureVariant01 = defineType({
         },
       ],
     }),
+    defineField({
+      name: "align_items_center",
+      title: "Align Items Center",
+      type: "boolean",
+      initialValue: () => false,
+      group: "style",
+    }),
+    defineField({
+      name: "invert_order",
+      title: "Invert Order",
+      type: "boolean",
+      initialValue: () => false,
+      group: "style",
+    }),
+    defineField({
+      name: "enable_animations",
+      title: "Enable Animations",
+      type: "boolean",
+      initialValue: () => false,
+      group: "style",
+    }),
+    ...generateBackgroundPatternField(),
   ],
   preview: {
     select: {

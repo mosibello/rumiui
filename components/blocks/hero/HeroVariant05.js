@@ -138,6 +138,13 @@ const HeroVariant05 = ({ data }) => {
                 </div>
               </ConditionalBlurFade>
             )}
+
+            {data.additional_content && (
+              <ConditionalBlurFade enabled={data.enable_animations} delay={0.2}>
+                <RichtextField content={data.additional_content} />
+              </ConditionalBlurFade>
+            )}
+
             {data.button_title && (
               <ConditionalBlurFade
                 enabled={data?.enable_animations}
@@ -147,6 +154,8 @@ const HeroVariant05 = ({ data }) => {
                   <Button
                     destination={data.button_destination}
                     title={data.button_title}
+                    target={data.button_open_in_new_tab}
+                    theme={data.button_theme}
                   />
                 </div>
               </ConditionalBlurFade>
