@@ -85,8 +85,9 @@ const FeatureVariant05 = ({ data = {} }) => {
             >
               {data.repeater.map((elem, index) => {
                 const {
-                  iconSvg,
-                  iconType,
+                  icon_svg,
+                  icon_type,
+                  icon_color,
                   image,
                   heading,
                   description,
@@ -109,8 +110,9 @@ const FeatureVariant05 = ({ data = {} }) => {
                         style={useCleanValue(data.card_style)}
                         headingTag={useCleanValue(data.card_heading_tag)}
                         icon={imageObj}
-                        iconSvg={iconSvg}
-                        iconType={iconType}
+                        iconSvg={icon_svg}
+                        iconType={icon_type}
+                        iconColor={icon_color}
                         heading={heading}
                         description={description}
                         buttonTitle={button_title}

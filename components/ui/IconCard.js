@@ -5,6 +5,7 @@ import Button from "./Button";
 import Image from "next/image";
 import Heading from "./Heading";
 import Description from "./Description";
+import { cn } from "@/lib/utils";
 import { useCleanValue } from "@/lib/helpers";
 
 const Component = styled.div`
@@ -49,6 +50,7 @@ const Component = styled.div`
 const IconCard = ({
   style = "shadow",
   iconType = `svg`,
+  className,
   iconSvg,
   icon,
   iconColor = `var(--t-primary-branding-color)`,
@@ -61,7 +63,12 @@ const IconCard = ({
   buttonTheme = "link",
 }) => {
   return (
-    <Component className={`c__icon-card c__icon-card--${useCleanValue(style)}`}>
+    <Component
+      className={cn(
+        `c__icon-card c__icon-card--${useCleanValue(style)}`,
+        className
+      )}
+    >
       <div className="c__icon-card__wrapper">
         {icon && (icon.src || iconSvg) && (
           <div className={`c__icon-card__icon-wrapper text-[${iconColor}]`}>

@@ -1,5 +1,13 @@
 import { defineField, defineType } from "sanity";
-import { scopedCss } from "../defaultFields";
+import {
+  scopedCss,
+  generateButtonField,
+  generateIconCardStyleField,
+  generateCardColumnsField,
+  generateHeadingTagField,
+  generateBackgroundPatternField,
+  generateRichtextField,
+} from "../defaultFields";
 const blockCategory = "feature";
 const FeatureVariant03 = defineType({
   name: "FeatureVariant03",
@@ -34,51 +42,67 @@ const FeatureVariant03 = defineType({
       initialValue: "Powerful Section Heading to Insure Readability",
       group: "content",
     }),
-    defineField({
+    generateHeadingTagField({
+      name: `heading_tag`,
+      title: `Heading Tag`,
+    }),
+
+    generateRichtextField({
       name: "content",
       title: "Content",
-      type: "array",
-      initialValue:
-        "Gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet",
-      of: [
-        {
-          type: "block",
-        },
-        {
-          type: "image",
-          fields: [
-            {
-              type: "text",
-              name: "alt",
-              title: "Alternative text",
-              options: {
-                isHighlighted: true,
-              },
-            },
-          ],
-        },
-      ],
-      group: "content",
     }),
-    defineField({
-      name: "align_items_center",
-      title: "Align Items Center",
-      type: "boolean",
-      initialValue: () => false,
-      group: "style",
-    }),
+
     defineField({
       name: "repeater",
       title: "Repeater",
       type: "array",
+      group: "content",
+      initialValue: () =>
+        Array(3)
+          .fill(0)
+          .map((_, i) => ({
+            _type: "repeater_item",
+            heading: `Card Heading`,
+            description: `Gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet`,
+            button_title: "Learn More",
+          })),
       of: [
         {
           type: "object",
+          name: "repeater_item",
+          title: "Repeater Item",
           fields: [
+            defineField({
+              name: "icon_type",
+              title: "Icon Type",
+              type: "string",
+              initialValue: "svg",
+              options: {
+                list: [
+                  { title: "SVG", value: "svg" },
+                  { title: "Image", value: "image" },
+                ],
+              },
+            }),
+            defineField({
+              name: "icon_svg",
+              title: "Icon SVG",
+              type: "text",
+              rows: 3,
+              hidden: ({ parent }) => parent?.[`icon_type`] !== "svg",
+              initialValue: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notepad-text-icon lucide-notepad-text"><path d="M8 2v4"/><path d="M12 2v4"/><path d="M16 2v4"/><rect width="16" height="18" x="4" y="4" rx="2"/><path d="M8 10h6"/><path d="M8 14h8"/><path d="M8 18h5"/></svg>`,
+            }),
+            defineField({
+              name: "icon_color",
+              title: "Icon Color",
+              type: "string",
+              hidden: ({ parent }) => parent?.[`icon_type`] !== "svg",
+            }),
             defineField({
               name: "image",
               title: "Icon",
               type: "image",
+              hidden: ({ parent }) => parent?.[`icon_type`] !== "image",
               options: { hotspot: true },
               fields: [
                 {
@@ -106,6 +130,26 @@ const FeatureVariant03 = defineType({
         },
       ],
     }),
+
+    defineField({
+      name: "align_items_center",
+      title: "Align Items Center",
+      type: "boolean",
+      initialValue: () => false,
+      group: "style",
+    }),
+    generateHeadingTagField({
+      name: `card_heading_tag`,
+      title: `Card Heading Tag`,
+    }),
+    defineField({
+      name: "enable_animations",
+      title: "Enable Animations",
+      type: "boolean",
+      initialValue: () => false,
+      group: "style",
+    }),
+    ...generateBackgroundPatternField(),
   ],
   preview: {
     select: {
