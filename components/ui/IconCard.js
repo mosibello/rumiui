@@ -6,7 +6,7 @@ import Image from "next/image";
 import Heading from "./Heading";
 import Description from "./Description";
 import { cn } from "@/lib/utils";
-import { useCleanValue } from "@/lib/helpers";
+import { getCleanValue } from "@/lib/helpers";
 
 const Component = styled.div`
   padding: 2rem 1.5rem;
@@ -65,7 +65,7 @@ const IconCard = ({
   return (
     <Component
       className={cn(
-        `c__icon-card c__icon-card--${useCleanValue(style)}`,
+        `c__icon-card c__icon-card--${getCleanValue(style)}`,
         className
       )}
     >
@@ -104,7 +104,7 @@ const IconCard = ({
             </Description>
           </div>
         )}
-        {useCleanValue(buttonTitle) && (
+        {getCleanValue(buttonTitle) && (
           <div className="c__icon-card__button-wrapper mt-auto pt-[1.5rem]">
             <Button
               destination={buttonDestination}

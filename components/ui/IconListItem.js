@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 import Image from "next/image";
 import Heading from "./Heading";
 import Description from "./Description";
-import { useCleanValue } from "@/lib/helpers";
+import { getCleanValue } from "@/lib/helpers";
 import { cn } from "@/lib/utils";
 
 const Component = styled.div`
@@ -52,7 +52,7 @@ const IconListItem = ({
         <div className="c__icon-list-item__column">
           {icon && (icon.src || iconSvg) && (
             <div
-              className={`c__icon-list-item__figure-wrapper !text-[${useCleanValue(iconColor)}]`}
+              className={`c__icon-list-item__figure-wrapper !text-[${getCleanValue(iconColor)}]`}
             >
               <figure className="m-0 inline">
                 {iconType === `image` && icon?.src && (

@@ -8,7 +8,7 @@ import urlFor from "@/lib/imageUrlBuilder";
 import { cn } from "@/lib/utils";
 import { BackgroundPattern } from "@/components/ui/BackgroundPatterns";
 import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
-import { useCleanValue } from "@/lib/helpers";
+import { getCleanValue } from "@/lib/helpers";
 import Heading from "@/components/ui/Heading";
 import RichtextField from "@/components/ui/RichtextField";
 
@@ -97,10 +97,10 @@ const FeatureVariant03 = ({ data }) => {
                       <ConditionalBlurFade
                         enabled={data.enable_animations}
                         delay={0.3 + index * 0.1}
+                        key={index}
                       >
                         <IconListItem
-                          key={index}
-                          headingTag={useCleanValue(data.card_heading_tag)}
+                          headingTag={getCleanValue(data.card_heading_tag)}
                           className={
                             data.repeater.length - 1 === index
                               ? null
