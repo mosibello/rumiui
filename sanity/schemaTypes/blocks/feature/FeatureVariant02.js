@@ -1,5 +1,13 @@
 import { defineField, defineType } from "sanity";
-import { scopedCss, generateHeadingTagField } from "../defaultFields";
+import {
+  scopedCss,
+  generateButtonField,
+  generateIconCardStyleField,
+  generateCardColumnsField,
+  generateHeadingTagField,
+  generateBackgroundPatternField,
+  generateRichtextField,
+} from "../defaultFields";
 const blockCategory = "feature";
 const FeatureVariant02 = defineType({
   name: "FeatureVariant02",
@@ -26,14 +34,29 @@ const FeatureVariant02 = defineType({
       readOnly: true,
       hidden: true,
     }),
-
+    defineField({
+      name: "label",
+      title: "Label",
+      type: "string",
+      initialValue: "Section Label",
+      group: "content",
+    }),
+    generateHeadingTagField({
+      name: `label_heading_tag`,
+      title: `Label Heading Tag`,
+    }),
     defineField({
       name: "heading",
       title: "Heading",
       type: "string",
-      initialValue: "Powerful Section Heading to Insure Readability",
+      initialValue: `Powerful Section Heading`,
       group: "content",
     }),
+    generateHeadingTagField({
+      name: `heading_tag`,
+      title: `Heading Tag`,
+    }),
+
     defineField({
       name: "description",
       title: "Description",
@@ -61,11 +84,12 @@ const FeatureVariant02 = defineType({
       name: "repeater",
       title: "Repeater",
       type: "array",
+      group: "content",
       initialValue: () =>
-        Array(3)
+        Array(6)
           .fill(0)
           .map((_, i) => ({
-            _type: "object",
+            _type: "repeater_item",
             heading: `Card Heading`,
             description: `Gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet`,
             button_title: "Learn More",
@@ -73,11 +97,40 @@ const FeatureVariant02 = defineType({
       of: [
         {
           type: "object",
+          name: "repeater_item",
+          title: "Repeater Item",
           fields: [
+            defineField({
+              name: "icon_type",
+              title: "Icon Type",
+              type: "string",
+              initialValue: "svg",
+              options: {
+                list: [
+                  { title: "SVG", value: "svg" },
+                  { title: "Image", value: "image" },
+                ],
+              },
+            }),
+            defineField({
+              name: "iconSvg",
+              title: "Icon SVG",
+              type: "text",
+              rows: 3,
+              hidden: ({ parent }) => parent?.[`icon_type`] !== "svg",
+              initialValue: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notepad-text-icon lucide-notepad-text"><path d="M8 2v4"/><path d="M12 2v4"/><path d="M16 2v4"/><rect width="16" height="18" x="4" y="4" rx="2"/><path d="M8 10h6"/><path d="M8 14h8"/><path d="M8 18h5"/></svg>`,
+            }),
+            defineField({
+              name: "iconColor",
+              title: "Icon Color",
+              type: "string",
+              hidden: ({ parent }) => parent?.[`icon_type`] !== "svg",
+            }),
             defineField({
               name: "image",
               title: "Icon",
               type: "image",
+              hidden: ({ parent }) => parent?.[`icon_type`] !== "image",
               options: { hotspot: true },
               fields: [
                 {
@@ -101,40 +154,38 @@ const FeatureVariant02 = defineType({
                 "Gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet",
               rows: 2,
             }),
-            defineField({
-              name: "button_title",
-              title: "Button Title",
-              type: "string",
-              initialValue: "Learn More",
-            }),
-            defineField({
-              name: "button_destination",
-              title: "Button Destination",
-              type: "string",
+            ...generateButtonField({
+              name: "button",
+              titleLabel: "Button Title",
+              destinationLabel: "Button Destination",
+              themeLabel: `Button Theme`,
+              group: null,
+              includeTheme: false,
             }),
           ],
         },
       ],
     }),
-
     generateHeadingTagField({
       name: `card_heading_tag`,
       title: `Card Heading Tag`,
     }),
-    defineField({
-      name: "card_style",
-      title: "Card Style",
-      type: "string",
-      initialValue: "shadow",
-      group: "style",
-      options: {
-        list: [
-          { title: "Solid", value: "solid" },
-          { title: "Outlined", value: "outlined" },
-          { title: "Shadow", value: "shadow" },
-        ],
-      },
+    generateIconCardStyleField({
+      name: `card_style`,
+      title: `Card Style`,
     }),
+    generateCardColumnsField({
+      name: `card_columns`,
+      title: `Card Columns`,
+    }),
+    defineField({
+      name: "enable_animations",
+      title: "Enable Animations",
+      type: "boolean",
+      initialValue: () => false,
+      group: "style",
+    }),
+    ...generateBackgroundPatternField(),
   ],
   preview: {
     select: {

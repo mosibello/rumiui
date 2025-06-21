@@ -5,7 +5,7 @@ import Button from "./Button";
 import Image from "next/image";
 import Heading from "./Heading";
 import Description from "./Description";
-import { stegaClean } from "@sanity/client/stega";
+import { useCleanValue } from "@/lib/helpers";
 
 const Component = styled.div`
   padding: 2rem 1.5rem;
@@ -61,7 +61,7 @@ const IconCard = ({
   buttonTheme = "link",
 }) => {
   return (
-    <Component className={`c__icon-card c__icon-card--${stegaClean(style)}`}>
+    <Component className={`c__icon-card c__icon-card--${useCleanValue(style)}`}>
       <div className="c__icon-card__wrapper">
         {icon && (icon.src || iconSvg) && (
           <div className={`c__icon-card__icon-wrapper text-[${iconColor}]`}>
@@ -97,7 +97,7 @@ const IconCard = ({
             </Description>
           </div>
         )}
-        {stegaClean(buttonTitle) && (
+        {useCleanValue(buttonTitle) && (
           <div className="c__icon-card__button-wrapper mt-auto pt-[1.5rem]">
             <Button
               destination={buttonDestination}

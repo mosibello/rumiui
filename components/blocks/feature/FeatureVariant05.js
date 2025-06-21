@@ -3,12 +3,12 @@ import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
 import IconCard from "@/components/ui/IconCard";
 import urlFor from "@/lib/imageUrlBuilder";
-import { stegaClean } from "@sanity/client/stega";
 import Heading from "@/components/ui/Heading";
 import Description from "@/components/ui/Description";
 import { cn } from "@/lib/utils";
 import { BackgroundPattern } from "@/components/ui/BackgroundPatterns";
 import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
+import { useCleanValue } from "@/lib/helpers";
 
 const Wrapper = styled.div`
   .b__feature__variant05 {
@@ -25,7 +25,7 @@ const cardColumns = {
 };
 
 const FeatureVariant05 = ({ data = {} }) => {
-  const dataCardColumns = stegaClean(data.cardColumns);
+  const dataCardColumns = useCleanValue(data.card_columns);
   const columnClassName = `col-md-6 ${dataCardColumns ? cardColumns[dataCardColumns] : `col-lg-4`}`;
 
   return (
@@ -81,7 +81,7 @@ const FeatureVariant05 = ({ data = {} }) => {
         {data.repeater && (
           <div className="container relative u__z-index-1 mt-[2rem]">
             <div
-              className={`row b__feature__variant05__row justify-${stegaClean(data.justify_content)}`}
+              className={`row b__feature__variant05__row justify-${useCleanValue(data.justify_content)}`}
             >
               {data.repeater.map((elem, index) => {
                 const {
@@ -106,8 +106,8 @@ const FeatureVariant05 = ({ data = {} }) => {
                       delay={0.3 + index * 0.1}
                     >
                       <IconCard
-                        style={data.card_style}
-                        headingTag={data.card_heading_tag}
+                        style={useCleanValue(data.card_style)}
+                        headingTag={useCleanValue(data.card_heading_tag)}
                         icon={imageObj}
                         iconSvg={iconSvg}
                         iconType={iconType}

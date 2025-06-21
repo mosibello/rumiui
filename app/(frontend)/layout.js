@@ -1,5 +1,5 @@
-import "./globals.css";
 // import "bootstrap/dist/css/bootstrap.css";
+import "./globals.css";
 import "@/styles/index.scss";
 import Layout from "@/components/wrappers/Layout";
 import StyledComponentsRegistry from "@/lib/registry";
