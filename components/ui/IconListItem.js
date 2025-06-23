@@ -63,7 +63,9 @@ const IconListItem = ({
                     height={500}
                   />
                 )}
-                {iconType === `svg` && iconSvg && <>{parse(iconSvg)}</>}
+                {iconType === `svg` && iconSvg && (
+                  <>{parse(getCleanValue(iconSvg))}</>
+                )}
               </figure>
             </div>
           )}

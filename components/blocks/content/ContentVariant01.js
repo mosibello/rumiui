@@ -1,8 +1,11 @@
 "use client";
-import parse from "html-react-parser";
 import Bounded from "@/components/wrappers/Bounded";
 import styled from "styled-components";
-import { PortableText } from "@portabletext/react";
+import Heading from "@/components/ui/Heading";
+import { cn } from "@/lib/utils";
+import { BackgroundPattern } from "@/components/ui/BackgroundPatterns";
+import { ConditionalBlurFade } from "@/components/ui/RevealAnimations";
+import RichtextField from "@/components/ui/RichtextField";
 
 const Wrapper = styled.div`
   .b__content__variant01 {
@@ -25,23 +28,37 @@ const ContentVariant01 = ({ data }) => {
       id={data._key}
       type={data._type}
       scopedCss={data.scoped_css}
-      className="b__content__variant01"
+      className="b__content__variant01 overflow-hidden relative"
     >
+      {data.enable_background_pattern && (
+        <BackgroundPattern
+          patternType={data.background_pattern_type ?? `dots`}
+          className={cn(
+            "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)]"
+          )}
+        />
+      )}
+
       <Wrapper>
         <div className="container relative">
           <div className="row b__content__variant01__grid-row">
             <div className="col-lg-4">
-              {data.heading && (
-                <div className="c__heading-wrapper mb-lg-4">
-                  <h2 className="c__heading u__h2">{parse(data.heading)}</h2>
+              <ConditionalBlurFade enabled={data.enable_animations} delay={0}>
+                <div className="c__heading-wrapper mb-[1rem]">
+                  <Heading tag={data.heading_tag || "h2"} className={`u__h2`}>
+                    {data.heading}
+                  </Heading>
                 </div>
-              )}
+              </ConditionalBlurFade>
             </div>
             <div className="col-lg-8">
               {data.content && (
-                <div className="c__richtext-field u__h6">
-                  <PortableText value={data.content} />
-                </div>
+                <ConditionalBlurFade
+                  enabled={data.enable_animations}
+                  delay={0.1}
+                >
+                  <RichtextField className="u__h6" content={data.content} />
+                </ConditionalBlurFade>
               )}
             </div>
           </div>
